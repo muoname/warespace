@@ -1,24 +1,8 @@
-# README
+# WARESPACE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project aims to create a solution to the problems encountered by individuals who have vacant spaces and those in need of space. It provides hosts a way to market their properties by listing them in the application and for interested renters to easily see and access. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Developers
+* Aspe, Eugene Lance
+* Vibar, Regina Juliane
+* Naval, Liana Joy
