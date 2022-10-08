@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  space_id: 1
+  user_id: 1
+  price: 9.99
+  location: MyString
+  space_size: MyString
+  description: MyString
+  photos: MyString
+  is_occupied: false
+
+two:
+  space_id: 1
+  user_id: 1
+  price: 9.99
+  location: MyString
+  space_size: MyString
+  description: MyString
+  photos: MyString
+  is_occupied: false
