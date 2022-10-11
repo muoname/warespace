@@ -15,7 +15,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: warespace
   password: PassionForStorage1!
-  host: localhost
+  host: 34.121.84.27
 
 development:
   <<: *default
