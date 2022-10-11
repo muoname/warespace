@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_08_114455) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_193734) do
   create_table "rents", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "space_id"
     t.integer "user_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_114455) do
     t.boolean "is_occupied"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
