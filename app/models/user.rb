@@ -1,11 +1,13 @@
 class User < ApplicationRecord
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :address, presence: true
-  validates :is_renter, presence: true
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  enum role: [:user, :admin]
+  after_initialize :set_default_role, :if => :new_record?
 
-  validates :email, uniqueness: true
-  validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}
-  validates :phone, length: {is: 11}
-  validates :phone, format: {with: /\A(09)\d{9}\z/, message: "has incorrect format should be (09NNNNNNNNN)"}
+  def set_default_role
+    self.role ||= :user
+  end
+
 end
