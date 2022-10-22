@@ -12,13 +12,9 @@
   <% end %>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :spacecategory_id, style: "display: block" %>
-    <%= form.text_field :spacecategory_id %>
+    <p>Space Category:
+    <%= collection_select(:space, :spacecategory_id, Spacecategory.all, :id, :category_name, prompt: "Select Category")  %>
+    </p>
   </div>
 
   <div>

@@ -1,13 +1,14 @@
 <div id="<%= dom_id space %>">
   <p>
-    <strong>User:</strong>
-    <%= space.user_id %>
+    <strong>Owner:</strong>
+    <%= space.user.user_fullname %>
   </p>
 
   <p>
-    <strong>Spacecategory:</strong>
-    <%= space.spacecategory_id %>
+    <strong>Space Category:</strong>
+    <%= space.spacecategory.category_name %>
   </p>
+
 
   <p>
     <strong>Title:</strong>
