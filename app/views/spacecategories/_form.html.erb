@@ -1,0 +1,22 @@
+<%= form_with(model: spacecategory) do |form| %>
+  <% if spacecategory.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(spacecategory.errors.count, "error") %> prohibited this spacecategory from being saved:</h2>
+
+      <ul>
+        <% spacecategory.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :category_name, style: "display: block" %>
+    <%= form.text_field :category_name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

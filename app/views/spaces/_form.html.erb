@@ -1,0 +1,67 @@
+<%= form_with(model: space) do |form| %>
+  <% if space.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(space.errors.count, "error") %> prohibited this space from being saved:</h2>
+
+      <ul>
+        <% space.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :spacecategory_id, style: "display: block" %>
+    <%= form.text_field :spacecategory_id %>
+  </div>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_area :location %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :space_size, style: "display: block" %>
+    <%= form.text_field :space_size %>
+  </div>
+
+  <div>
+    <%= form.label :weekly_rate, style: "display: block" %>
+    <%= form.text_field :weekly_rate %>
+  </div>
+
+  <div>
+    <%= form.label :longitude, style: "display: block" %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div>
+    <%= form.label :latitude, style: "display: block" %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div>
+    <%= form.label :space_policies, style: "display: block" %>
+    <%= form.text_area :space_policies %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

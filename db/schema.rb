@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_090429) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_201719) do
   create_table "rents", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "space_id"
     t.integer "user_id"
@@ -19,17 +19,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_090429) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "spaces", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "user_id"
-    t.decimal "price", precision: 10
-    t.string "location"
-    t.string "space_size"
-    t.string "description"
-    t.string "photos"
-    t.boolean "is_occupied"
+  create_table "spacecategories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "spaces", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "spacecategory_id"
     t.string "title"
+    t.text "location"
+    t.text "description"
+    t.string "space_size"
+    t.decimal "weekly_rate", precision: 10
+    t.float "longitude"
+    t.float "latitude"
+    t.text "space_policies"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

@@ -1,0 +1,2 @@
+class Spacecategory < ApplicationRecord
+end
