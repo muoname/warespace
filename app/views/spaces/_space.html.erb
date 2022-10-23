@@ -52,11 +52,11 @@
 
   <p>
     <%# show the full image on click%>
-    <%= link_to image_tag(space.image), space.image %>
+    <%= link_to image_tag(space.image_as_hero), space.image %>
   </p>
   <hr />
   <p>
-    <% space.pictures.each do |pic| %>
+    <% space.pictures_as_thumb.each do |pic| %>
       <%# show the full image on click %>
       <%= link_to image_tag(pic), pic %>
     <% end %>
