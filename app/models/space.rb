@@ -1,10 +1,31 @@
 class Space < ApplicationRecord
+    belongs_to :user
+    belongs_to :spacecategory
 
-  validates :user_id, presence: true
-  validates :title, presence: true
-  validates :location, presence: true
-  validates :description, presence: true
-  validates :space_size, presence: true
-  validates :is_occupied, presence: true
+    # one attached image
+    has_one_attached :image
+
+    # many images attached
+    has_many_attached :pictures
+
+
+    # method to resize hero image on _space.html.erb
+    def image_as_hero
+        
+        # only show hero with these file types
+        return unless image.content_type.in?(%w[image/jpg image/png image/jpeg])
+
+        image.variant(resize_to_limit: [300, 300]).processed
+        
+    end
+
+    # method to resize multiple image as thumbnails on _space.html.erb
+    def pictures_as_thumb
+
+        pictures.map do |pic|
+            pic.variant(resize_to_limit: [150, 150]).processed
+        end
+
+    end
 
 end

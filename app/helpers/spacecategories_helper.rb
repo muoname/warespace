@@ -1,0 +1,2 @@
+module SpacecategoriesHelper
+end

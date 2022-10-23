@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @space %>
+
+<div>
+  <%= link_to "Edit this space", edit_space_path(@space) %> |
+  <%= link_to "Back to spaces", spaces_path %>
+
+  <%= button_to "Destroy this space", @space, method: :delete %>
+</div>

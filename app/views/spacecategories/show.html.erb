@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @spacecategory %>
+
+<div>
+  <%= link_to "Edit this spacecategory", edit_spacecategory_path(@spacecategory) %> |
+  <%= link_to "Back to spacecategories", spacecategories_path %>
+
+  <%= button_to "Destroy this spacecategory", @spacecategory, method: :delete %>
+</div>
