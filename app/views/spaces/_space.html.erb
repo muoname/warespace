@@ -1,19 +1,21 @@
 <div id="<%= dom_id space %>">
-  <p>
-    <strong>Owner:</strong>
-    <%= space.user.user_fullname %>
-  </p>
+
+
+<h2>
+    <%= space.title %>
+</h2>
 
   <p>
     <strong>Space Category:</strong>
     <%= space.spacecategory.category_name %>
   </p>
 
-
   <p>
-    <strong>Title:</strong>
-    <%= space.title %>
+    <strong>Contact Host:</strong>
+    <%= space.user.user_fullname %>: <%= space.user.phone_number %>
   </p>
+
+
 
   <p>
     <strong>Location:</strong>
@@ -35,15 +37,6 @@
     <%= space.weekly_rate %>
   </p>
 
-  <p>
-    <strong>Longitude:</strong>
-    <%= space.longitude %>
-  </p>
-
-  <p>
-    <strong>Latitude:</strong>
-    <%= space.latitude %>
-  </p>
 
   <p>
     <strong>Space policies:</strong>
