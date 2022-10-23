@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Space Categories</h1>
+
+<div id="spacecategories">
+  <% @spacecategories.each do |spacecategory| %>
+    <%= render spacecategory %>
+    <p>
+      <%= link_to "Show this spacecategory", spacecategory %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New spacecategory", new_spacecategory_path %>
