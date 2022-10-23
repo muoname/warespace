@@ -12,6 +12,9 @@ class Space < ApplicationRecord
     # method to resize hero image on _space.html.erb
     def image_as_hero
         
+        # only show hero with these file types
+        return unless image.content_type.in?(%w[image/jpg image/png image/jpeg])
+
         image.variant(resize_to_limit: [300, 300]).processed
         
     end

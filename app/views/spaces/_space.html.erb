@@ -50,11 +50,15 @@
     <%= space.space_policies %>
   </p>
 
-  <p>
-    <%# show the full image on click%>
-    <%= link_to image_tag(space.image_as_hero), space.image %>
-  </p>
-  <hr />
+<% if space.image.content_type.in?(%w[image/jpg image/png image/jpeg]) %>
+    
+    <p>
+      <%# show the full image on click%>
+      <%= link_to image_tag(space.image_as_hero), space.image if space.image.attached?%>
+    </p>
+<% else %>
+      <p>No available image for this space.</p>
+<% end %>
   <p>
     <% space.pictures_as_thumb.each do |pic| %>
       <%# show the full image on click %>
