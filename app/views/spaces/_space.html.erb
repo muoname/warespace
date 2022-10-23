@@ -50,4 +50,16 @@
     <%= space.space_policies %>
   </p>
 
+  <p>
+    <%# show the full image on click%>
+    <%= link_to image_tag(space.image), space.image %>
+  </p>
+  <hr />
+  <p>
+    <% space.pictures.each do |pic| %>
+      <%# show the full image on click %>
+      <%= link_to image_tag(pic), pic %>
+    <% end %>
+  </p>
+
 </div>
