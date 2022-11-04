@@ -1,7 +1,6 @@
 <template lang="">
     <div>
-        <h1>Temp</h1>
-        <p>Modified Testing</p>
+        <h1>Tempest</h1>
     </div>
 </template>
 <script>

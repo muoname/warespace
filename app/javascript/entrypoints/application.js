@@ -35,6 +35,7 @@ import { Quasar } from "quasar"
 import '@quasar/extras/material-icons/material-icons.css'
 import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
 import '@quasar/extras/bootstrap-icons/bootstrap-icons.css'
+import "quasar/src/css/flex-addon.sass"
 
 // Import Quasar css
 import 'quasar/src/css/index.sass'
@@ -44,5 +45,10 @@ import App from "../components/App.vue"
 import Temp from "../components/Temp.vue"
 
 //Create Vue App
-const app = createApp(App).mount("#app")
-const temp = createApp(Temp).mount("#temp")
+const app = createApp(App)
+
+app.use(Quasar, {
+  plugins: {}, // import Quasar plugins and add here
+})
+
+app.mount('#app')

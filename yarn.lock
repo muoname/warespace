@@ -351,10 +351,10 @@
     "picocolors" "^1.0.0"
     "source-map-js" "^1.0.2"
 
-"quasar@^2.10.0", "quasar@^2.8.0":
-  "integrity" "sha512-PHGcrzPQfFa4tv9a5Z/3D2uat48D4WC9Ad/imzHk/k3G41t0eFMH6glCjAvpCWF2q8dBYIg4nEchiPhlujbKsw=="
-  "resolved" "https://registry.npmjs.org/quasar/-/quasar-2.10.0.tgz"
-  "version" "2.10.0"
+"quasar@^2.10.1", "quasar@^2.8.0":
+  "integrity" "sha512-W0SEbTdfFS4xvO5OyTyuJent+11MpjBJUYLga69ZFigRh7SV6wFpGNfCuxAifM0L83bp4rWrL2KGoIjEoDsjOw=="
+  "resolved" "https://registry.npmjs.org/quasar/-/quasar-2.10.1.tgz"
+  "version" "2.10.1"
 
 "queue-microtask@^1.2.2":
   "integrity" "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
