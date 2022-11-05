@@ -12,21 +12,16 @@
   <% end %>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
+    
+    <%= form.hidden_field :space_id %>
   </div>
 
   <div>
-    <%= form.label :space_id, style: "display: block" %>
-    <%= form.number_field :space_id %>
-  </div>
-
-  <div>
-    <%= form.label :duration, style: "display: block" %>
+    <%= form.label "Duration of Stay", style: "display: block" %>
     <%= form.text_field :duration %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Rent this space" %>
   </div>
 <% end %>

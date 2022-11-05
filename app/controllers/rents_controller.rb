@@ -22,13 +22,14 @@ class RentsController < ApplicationController
   # POST /rents or /rents.json
   def create
     @rent = Rent.new(rent_params)
+    @rent.user_id = current_user.id
 
     respond_to do |format|
       if @rent.save
-        format.html { redirect_to rent_url(@rent), notice: "Rent was successfully created." }
+        format.html { redirect_to "/spaces/" + @rent.space_id.to_s, notice: "Rent was successfully created." }
         format.json { render :show, status: :created, location: @rent }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to "/spaces/" + @rent.space_id.to_s, notice: @rent.errors }
         format.json { render json: @rent.errors, status: :unprocessable_entity }
       end
     end
