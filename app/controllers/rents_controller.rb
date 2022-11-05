@@ -26,10 +26,10 @@ class RentsController < ApplicationController
 
     respond_to do |format|
       if @rent.save
-        format.html { redirect_to "/spaces/" + @rent.space_id.to_s, notice: "Rent was successfully created." }
+        format.html { redirect_to "/spaces/" + @rent.space_id.to_s, notice: "Reservation is successful" }
         format.json { render :show, status: :created, location: @rent }
       else
-        format.html { redirect_to "/spaces/" + @rent.space_id.to_s, notice: @rent.errors }
+        format.html { redirect_to "/spaces/" + @rent.space_id.to_s, notice: "Reservation attempt is unsuccessful" }
         format.json { render json: @rent.errors, status: :unprocessable_entity }
       end
     end
