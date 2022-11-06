@@ -9,7 +9,12 @@ export default defineConfig({
     RubyPlugin(),
     FullReload(["config/routes.rb", "app/views/**/*"], {delay: 200}),
     vue({
-      template: { transformAssetUrls }
+      template: { 
+        transformAssetUrls,
+        compilerOptions: {
+          isCustomElement: (tag) => ['md-linedivider'].includes(tag),
+        }
+       }
     }),
     quasar({
     })
