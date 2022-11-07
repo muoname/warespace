@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'page_test/home'
+  get 'page_test/space_recording'
+  get 'page_test/account'
   resources :spaces
   resources :spacecategories
   root 'pages#home'

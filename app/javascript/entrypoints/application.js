@@ -42,13 +42,44 @@ import 'quasar/src/css/index.sass'
 
 //Import App Component
 import App from "../components/App.vue"
-import Temp from "../components/Temp.vue"
+import Registration from "../components/Registration.vue"
+import Landing from "../components/Landing.vue"
+import Space_Recording from "../components/Space-Recording.vue"
+import Account from "../components/Account.vue"
 
 //Create Vue App
 const app = createApp(App)
+const registration = createApp(Registration)
+const landing = createApp(Landing)
+const space_recording = createApp(Space_Recording)
+const account = createApp(Account)
 
 app.use(Quasar, {
   plugins: {}, // import Quasar plugins and add here
 })
 
 app.mount('#app')
+
+registration.use(Quasar, {
+  plugins: {}, // import Quasar plugins and add here
+})
+
+registration.mount('#registration')
+
+landing.use(Quasar, {
+  plugins: {}, // import Quasar plugins and add here
+})
+
+landing.mount('#landing')
+
+space_recording.use(Quasar, {
+  plugins: {}, // import Quasar plugins and add here
+})
+
+space_recording.mount('#space_recording')
+
+account.use(Quasar, {
+  plugins: {}, // import Quasar plugins and add here
+})
+
+account.mount('#account')

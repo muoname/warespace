@@ -13,7 +13,7 @@
           <q-input outlined v-model="password" type="password" label="Password" />
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <a href="">Sign Up</a>
+          <a href="/users/sign_up">Sign Up</a>
         </q-card-section>
         <q-card-actions align="right" class="text-primary">
           <q-btn color="primary" type="submit" label="Login" v-close-popup />

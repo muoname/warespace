@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-3">
                     <q-toolbar-title align="center">
-                        <q-btn flat color="white" @click="">
+                        <q-btn flat color="white" href="/">
                             <div class="row q-pb-sm">
                                 <img class="q-pt-sm logo-resize" src="/assets/logo-2.png">
                             </div>
@@ -26,7 +26,7 @@
                 <div class="q-pr-md col-3 vertical-middle" align="right">
                     <q-input bg-color="white" outlined rounded dense v-model="text" label="Search">
                         <template v-slot:append>
-                            <div class="justtify-right">
+                            <div class="justtify-right flex-center">
                                 <q-icon name="search">
                                 </q-icon>
                             </div>
@@ -36,21 +36,58 @@
             </div>
 
             
-            
             <div class="row-inline justify-between flex-center gt-sm">
                 <div class="col">
                     <q-tabs v-model="tab" align="center">
-                        <q-tab name="home" icon="fa-solid fa-house" label="Home" />
+                        <q-tab name="home" icon="fa-solid fa-house" label="Home" href="/" />
                         <q-tab name="map" icon="fa-solid fa-map" label="Map" />
                         <q-tab name="shop" icon="fa-solid fa-shop" label="Browse" />
                     </q-tabs>
                 </div>
             </div>
-            
-
         </q-header>
 
-        <q-page-container>
+        <q-separator/>
+        <div class="row text-h6 q-pa-lg header-color text-white">
+            Check these recommendations!
+        </div>
+        <div clas="row-inline ">
+            <Carousel_Card></Carousel_Card>
+        </div>
+        <div class="row-inline dheader-color">
+            <div class="col flex-center items-center text-h4 q-pa-lg text-white" align="center">
+                Subscribe to our Newsletter!
+                <div class="row flex-center q-pt-md" align="center">
+                    <div class="col-3">
+                        <q-input bg-color="white" outlined rounded dense v-model="text" label="Email Address">
+                            <template v-slot:append>
+                                <div class="justtify-right flex center">
+                                    <q-icon name="email">
+                                    </q-icon>
+                                </div>
+                            </template>
+                        </q-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-between dheader-color">
+            <div class="col-3 text-h6 q-pa-lg text-white">
+                <p class="text-h6" align="center">About Us</p>
+            </div>
+            <div class="col-3 text-h6 q-pa-lg text-white">
+                <p class="text-h6" align="center">Browse</p>
+            </div>
+            <div class="col-3 q-pa-lg text-white">
+                <p class="text-h6" align="center">Our Mission</p>
+                <div class="col text-body-1">
+                    Be a part of creating an awesome space for new comers, hobbyists, and enthusiasts, who have the same affinity for custom
+                    mechanical keyboards.
+                </div>
+            </div>
+        </div>
+
+        <!--<q-page-container>
             <q-page>
                 <div class="row justify-between flex-center items-stretch">
                     <q-parallax height="600">
@@ -60,7 +97,7 @@
                     </q-parallax>
                 </div>
             </q-page>
-        </q-page-container>
+        </q-page-container> -->
 
         <q-drawer v-model="leftDrawerOpen" side="left" overlay elevated class="header-color">
             <q-header reveal class="header-color text-white" height-hint="98">
@@ -69,9 +106,38 @@
                         <q-btn dense flat round icon="fa-solid fa-x" @click="toggleLeftDrawer" />
                     </div>
                 </div>
+                <div class="q-pl-md">
+                    <q-list padding class="menu-list">
+                        <q-item clickable v-ripple>
+                            <q-item-section avatar>
+                                <q-icon name="fa-solid fa-house" href="/"></q-icon>
+                            </q-item-section>
+                            <q-item-section>
+                                Home
+                            </q-item-section>
+                        </q-item>
+                        <q-item clickable v-ripple>
+                            <q-item-section avatar>
+                                <q-icon name="fa-solid fa-map"></q-icon>
+                            </q-item-section>
+                            <q-item-section>
+                                Map
+                            </q-item-section>
+                        </q-item>
+                        <q-item clickable v-ripple>
+                            <q-item-section avatar>
+                                <q-icon name="fa-solid fa-shop"></q-icon>
+                            </q-item-section>
+                            <q-item-section>
+                                Browse
+                            </q-item-section>
+                        </q-item>
+                    </q-list>
+                </div>
+                    
             </q-header>
         
-            <q-footer class="bg-grey-8 text-white">
+            <q-footer class="dheader-color text-white">
                 <div class="row flex-center q-pa-md">
                     <div class="col justify-right">
                         <q-btn flat color="white" @click="prompt = true" class="q-pa-xs">
@@ -84,11 +150,13 @@
                         </q-btn>
                     </div>
                 </div>
-                <div class="row">
-                    test
+                <div class="row q-pl-lg q-pr-md q-pt-sm q-pb-sm">
+                    <a href="" class="text-white">About Us</a>
                 </div>
             </q-footer>
         </q-drawer>
+
+        
 
         <!-- <div class="row items-stretched">
             <div class="col-12 vertical-flex">
@@ -104,12 +172,14 @@
 import { ref } from 'vue'
 import Login from './Login.vue'
 import Drawer from './Drawer.vue'
+import Carousel_Card from './Carousel-Card.vue'
 
 export default {
     
     components: {
         Login,
-        Drawer
+        Drawer,
+        Carousel_Card,
     },
 
     setup() {
@@ -145,6 +215,10 @@ export default {
 
     .header-color {
         background: rgba(47, 84, 150);
+    }
+
+    .dheader-color {
+        background: rgb(25, 51, 95);
     }
 
     .vertical-flex {
