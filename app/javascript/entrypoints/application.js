@@ -30,6 +30,8 @@ console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify
 //Create Vue APp
 import { createApp } from "vue"
 import { Quasar } from "quasar"
+import axios from "axios"
+import VueAxios from "vue-axios"
 
 // Import icon libraries
 import '@quasar/extras/material-icons/material-icons.css'
@@ -52,5 +54,6 @@ app.use(Quasar, {
   plugins: {}, // import Quasar plugins and add here
 })
 app.use(Router)
+app.use(VueAxios, axios)
 app.mount('#app')
 

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory  } from 'vue-router'
 
 import LandingPage from "./views/shared/landing.vue"
 import Registration from "./views/shared/registration.vue"
+import HostIndex from "./views/host/spaces/index.vue"
 import Error404 from "./views/pages/404.vue"
 
 const router = createRouter({
@@ -9,6 +10,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: LandingPage, name: 'root_path' },
     { path: '/users/sign_up', component: Registration, name: 'registration_path' },
+    { path: '/spaces', component: HostIndex, name: 'spaces_path' },
     { path: '/404', component: Error404 },
     //{ path: '/pages', component: PageIndex, name: 'pages_path' },
     //{ path: '/musicians', component: MusicianIndex, name: 'musicians_path' },
