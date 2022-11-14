@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rents
   resources :spaces
   resources :spacecategories
   root 'pages#home'
