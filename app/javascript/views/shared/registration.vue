@@ -15,7 +15,7 @@
 <script>
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
-import registration_form from './Registration-Form.vue'
+import registration_form from './_registration_form.vue'
 
 export default {
     components: {
@@ -34,10 +34,4 @@ export default {
 
 
 <style>
-    .p-t{
-        padding-top: 30px
-    }
-    .p-t2{
-        padding-top: 170px
-    }
 </style>

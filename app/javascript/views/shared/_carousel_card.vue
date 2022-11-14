@@ -37,7 +37,7 @@
 
 <script>
 import { ref } from 'vue'
-import Card from "./Card.vue"
+import Card from "./_card.vue"
 export default {
     components: {
         Card

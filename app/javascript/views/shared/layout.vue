@@ -1,6 +1,6 @@
 <template>
 
-    <q-layout class="" view="lHh lpR lFf">
+    <q-layout class="" view="lHh lpR lff">
 
         
 
@@ -47,7 +47,19 @@
             </div>
         </q-header>
 
-        <q-separator/>
+        <q-page-container>
+            <q-page>
+                <router-view />
+                <div class="row text-h6 q-pa-lg header-color text-white">
+                    Check these recommendations!
+                </div>
+                <div clas="row-inline ">
+                    <Carousel_Card></Carousel_Card>
+                </div>
+            </q-page>
+        </q-page-container>
+
+        <!--<q-separator/>
         <div class="row text-h6 q-pa-lg header-color text-white">
             Check these recommendations!
         </div>
@@ -85,7 +97,7 @@
                     mechanical keyboards.
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!--<q-page-container>
             <q-page>
@@ -156,6 +168,43 @@
             </q-footer>
         </q-drawer>
 
+        <q-footer class="dheader-color text-white">
+            
+            <div class="row-inline dheader-color">
+                <div class="col flex-center items-center text-h4 q-pa-lg text-white" align="center">
+                    Subscribe to our Newsletter!
+                    <div class="row flex-center q-pt-md" align="center">
+                        <div class="col-3">
+                            <q-input bg-color="white" outlined rounded dense v-model="text" label="Email Address">
+                                <template v-slot:append>
+                                    <div class="justtify-right flex center">
+                                        <q-icon name="email">
+                                        </q-icon>
+                                    </div>
+                                </template>
+                            </q-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-between dheader-color">
+                <div class="col-3 text-h6 q-pa-lg text-white">
+                    <p class="text-h6" align="center">About Us</p>
+                </div>
+                <div class="col-3 text-h6 q-pa-lg text-white">
+                    <p class="text-h6" align="center">Browse</p>
+                </div>
+                <div class="col-3 q-pa-lg text-white">
+                    <p class="text-h6" align="center">Our Mission</p>
+                    <div class="col text-body-1">
+                        Be a part of creating an awesome space for new comers, hobbyists, and enthusiasts, who have the same
+                        affinity for custom
+                        mechanical keyboards.
+                    </div>
+                </div>
+            </div> 
+        </q-footer>
+
         
 
         <!-- <div class="row items-stretched">
@@ -170,15 +219,13 @@
 
 <script>
 import { ref } from 'vue'
-import Login from './Login.vue'
-import Drawer from './Drawer.vue'
-import Carousel_Card from './Carousel-Card.vue'
+import Login from './_login.vue'
+import Carousel_Card from './_carousel_card.vue'
 
 export default {
     
     components: {
         Login,
-        Drawer,
         Carousel_Card,
     },
 

@@ -5,7 +5,7 @@
 
 <script>
 import { ref } from 'vue'
-import Carousel from "./Carousel.vue"
+import Carousel from "./_carousel.vue"
 export default {
     components: {
         Carousel
@@ -22,10 +22,5 @@ export default {
 </script>
 
 <style>
-    .p-t{
-        padding-top: 52px
-    }
-    .p-t2{
-        padding-top: 124px
-    }
+
 </style>
