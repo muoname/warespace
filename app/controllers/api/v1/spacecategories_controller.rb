@@ -1,4 +1,4 @@
-class SpacecategoriesController < ApplicationController
+class Api::V1::SpacecategoriesController < ApplicationController
   before_action :set_spacecategory, only: %i[ show edit update destroy ]
 
   # GET /spacecategories or /spacecategories.json

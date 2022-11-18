@@ -1,9 +1,11 @@
-class RentsController < ApplicationController
+class Api::V1::RentsController < ApplicationController
   before_action :set_rent, only: %i[ show edit update destroy ]
 
   # GET /rents or /rents.json
   def index
     @rents = Rent.all
+
+    render json: @rents
   end
 
   # GET /rents/1 or /rents/1.json

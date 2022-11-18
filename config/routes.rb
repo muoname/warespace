@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  resources :rents
-  resources :spaces
-  resources :spacecategories
+  namespace :api do
+    namespace :v1 do
+      devise_for :users
+      resources :spaces
+      resources :spacecategories
+      resources :rents
+    end
+  end
+  
   root 'pages#home'
-  devise_for :users
-
   match "*path", to: "pages#home", format: false, via: :get
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,13 +1,16 @@
-class SpacesController < ApplicationController
+class Api::V1::SpacesController < ApplicationController
   before_action :set_space, only: %i[ show edit update destroy ]
 
   # GET /spaces or /spaces.json
   def index
     @spaces = Space.all
+
+    render json: @spaces
   end
 
   # GET /spaces/1 or /spaces/1.json
   def show
+    render json: @space
   end
 
   # GET /spaces/new
