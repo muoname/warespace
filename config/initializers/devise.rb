@@ -15,9 +15,9 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '36ce7d1b1a50425d34d612bce6fc502c26b1b22edc756a512bd0e61cece69b97f34d82067fcacbe2f65d8cae67fc9bfe0594fc8fa65524dab85ce07f4522c7c8'
-  config.jwt do |jwt|
-      jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
-    end
+  # config.jwt do |jwt|
+  #     jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
+  #   end
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
