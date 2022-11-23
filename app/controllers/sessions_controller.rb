@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  skip_before_action :verify_authenticity_token
+
 
     def index
         render json: User.all.to_json(:only => [ :id, :first_name, :last_name, :address, :phone_number])

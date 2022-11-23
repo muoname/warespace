@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
 
-
     def index
       render json: User.all.to_json(:only => [ :id, :first_name, :last_name, :address, :phone_number])
-  end
+    end
 
     def show
+      # @user = User.find(params[:id])
       render json: @user
     end
 
