@@ -6,9 +6,9 @@
         <div class="text-h6">Login</div>
       </q-card-section>
   
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+      <q-form @submit="onSubmit" class="q-gutter-md">
         <q-card-section class="q-pt-none">
-          <q-input outlined v-model="username" type="text" autofocus label="Username/Email" />
+          <q-input outlined v-model="email" type="text" autofocus label="Email" />
           <p></p>
           <q-input outlined v-model="password" type="password" label="Password" />
         </q-card-section>
@@ -28,11 +28,40 @@
 
 <script>
 import { ref } from 'vue'
+import '../../store/store.js'
+import { mapActions, mapGetters } from "vuex"
+
 export default {
+  computed: {
+    ...mapGetters(["getAuthToken", "getUserEmail", "getUserID", "isLoggedIn", "getUserFirstName"])
+  },
+
+  data() {
+    return {
+      email: "",
+      password: ""
+    }
+  },
+
+  methods: {
+
+    ...mapActions(["loginUser", "logoutUser"]),
+    onSubmit(event) {
+      event.preventDefault();
+      let data = {
+        user: {
+          email: this.email,
+          password: this.password,
+        }
+      };
+      this.loginUser(data)
+    },
+
+  },
   
   setup(){
     return {
-      username: ref(''),
+      email: ref(''),
       password: ref(''),
     }
   }

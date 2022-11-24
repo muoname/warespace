@@ -1,6 +1,7 @@
 # app/controllers/members_controller.rb
 class MembersController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
   def show
     user = get_user_from_token

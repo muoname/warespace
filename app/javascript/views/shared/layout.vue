@@ -59,58 +59,6 @@
             </q-page>
         </q-page-container>
 
-        <!--<q-separator/>
-        <div class="row text-h6 q-pa-lg header-color text-white">
-            Check these recommendations!
-        </div>
-        <div clas="row-inline ">
-            <Carousel_Card></Carousel_Card>
-        </div>
-        <div class="row-inline dheader-color">
-            <div class="col flex-center items-center text-h4 q-pa-lg text-white" align="center">
-                Subscribe to our Newsletter!
-                <div class="row flex-center q-pt-md" align="center">
-                    <div class="col-3">
-                        <q-input bg-color="white" outlined rounded dense v-model="text" label="Email Address">
-                            <template v-slot:append>
-                                <div class="justtify-right flex center">
-                                    <q-icon name="email">
-                                    </q-icon>
-                                </div>
-                            </template>
-                        </q-input>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-between dheader-color">
-            <div class="col-3 text-h6 q-pa-lg text-white">
-                <p class="text-h6" align="center">About Us</p>
-            </div>
-            <div class="col-3 text-h6 q-pa-lg text-white">
-                <p class="text-h6" align="center">Browse</p>
-            </div>
-            <div class="col-3 q-pa-lg text-white">
-                <p class="text-h6" align="center">Our Mission</p>
-                <div class="col text-body-1">
-                    Be a part of creating an awesome space for new comers, hobbyists, and enthusiasts, who have the same affinity for custom
-                    mechanical keyboards.
-                </div>
-            </div>
-        </div> -->
-
-        <!--<q-page-container>
-            <q-page>
-                <div class="row justify-between flex-center items-stretch">
-                    <q-parallax height="600">
-                        <template v-slot:media>
-                            <img src="/assets/bg-landing.jpg">
-                        </template>
-                    </q-parallax>
-                </div>
-            </q-page>
-        </q-page-container> -->
-
         <q-drawer v-model="leftDrawerOpen" side="left" overlay elevated class="header-color">
             <q-header reveal class="header-color text-white" height-hint="98">
                 <div class="row justify-between flex-center">
@@ -151,7 +99,18 @@
         
             <q-footer class="dheader-color text-white">
                 <div class="row flex-center q-pa-md">
-                    <div class="col justify-right">
+                    <div v-if="isLoggedIn" class="col justify-right">
+                        <q-btn flat color="white" @click="logoutUser" class="q-pa-xs">
+                            <div class="row items-center no-wrap">
+                                <q-icon left name="fa-solid fa-user" size="20px" />
+                                <div class="text-center">
+                                    LogOut
+                                    Hello  {{ this.getUserFirstName }}
+                                </div>
+                            </div>
+                        </q-btn>
+                    </div>
+                    <div v-else class="col justify-right">
                         <q-btn flat color="white" @click="prompt = true" class="q-pa-xs">
                             <div class="row items-center no-wrap">
                                 <q-icon left name="fa-solid fa-user" size="20px" />
@@ -173,6 +132,7 @@
             <div class="row-inline dheader-color">
                 <div class="col flex-center items-center text-h4 q-pa-lg text-white" align="center">
                     Subscribe to our Newsletter!
+                    
                     <div class="row flex-center q-pt-md" align="center">
                         <div class="col-3">
                             <q-input bg-color="white" outlined rounded dense v-model="text" label="Email Address">
@@ -221,8 +181,39 @@
 import { ref } from 'vue'
 import Login from './_login.vue'
 import Carousel_Card from './_carousel_card.vue'
+import '../../store/store.js'
+import { mapActions, mapGetters } from "vuex"
+
 
 export default {
+    
+    computed: {
+        ...mapGetters(["getAuthToken", "getUserEmail", "getUserID", "isLoggedIn", "getUserFirstName"])
+    },
+
+    data(){
+        return {
+            loginEmail: "",
+            loginPassword: ""
+        }
+    },
+
+    methods: {
+        
+        ...mapActions(["loginUser", "logoutUser"]),
+        onLogin(event){
+            event.preventDefault();
+            let data = {
+                user: {
+                    email: this.loginEmail,
+                    password: this.loginPassword,
+                }
+            };
+            this.loginUser(data)
+            this.resetData()
+        },
+        
+    },
     
     components: {
         Login,
@@ -231,8 +222,10 @@ export default {
 
     setup() {
         const leftDrawerOpen = ref(false)
+        const testingTrue = ref(false)
 
         return {
+            testingTrue,
             leftDrawerOpen,
             tab: ref("home"),
             prompt: ref(false),

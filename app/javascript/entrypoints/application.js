@@ -45,6 +45,18 @@ import 'quasar/src/css/index.sass'
 //Import App Component
 import App from "../views/shared/layout.vue"
 import Router from '../routes.js';
+import Store from "../store/store.js";
+
+let localAuthToken = localStorage.auth_token;
+let cookieExists = localAuthToken !== "undefined" && localAuthToken !== null;
+if (cookieExists) {
+  const auth_token = localStorage.getItem("auth_token");
+  const authTokenExists = auth_token !== "undefined" && auth_token !== null;
+  if (authTokenExists) {
+    Store.dispatch("loginUserWithToken", { auth_token });
+  }
+
+}
 
 //Create Vue App
 const app = createApp(App)
@@ -55,5 +67,6 @@ app.use(Quasar, {
 })
 app.use(Router)
 app.use(VueAxios, axios)
+app.use(Store)
 app.mount('#app')
 
