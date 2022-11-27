@@ -25,7 +25,7 @@ class Api::V1::SpacesController < ApplicationController
   # POST /spaces or /spaces.json
   def create
     @space = Space.new(space_params)
-    @space.user_id = current_user.id
+    
 
     respond_to do |format|
       if @space.save
