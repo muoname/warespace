@@ -29,10 +29,8 @@ class Api::V1::SpacesController < ApplicationController
 
     respond_to do |format|
       if @space.save
-        format.html { redirect_to space_url(@space), notice: "Space was successfully created." }
         format.json { render :show, status: :created, location: @space }
       else
-        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @space.errors, status: :unprocessable_entity }
       end
     end

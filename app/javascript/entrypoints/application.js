@@ -29,6 +29,18 @@ console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify
 
 //Create Vue APp
 import { createApp } from "vue"
+
+import store from "../src/store";
+let localAuthToken = localStorage.auth_token;
+let cookieExists = localAuthToken !== "undefined" && localAuthToken !== null;
+if (cookieExists) {
+  const auth_token = localStorage.getItem("auth_token");
+  const authTokenExists = auth_token !== "undefined" && auth_token !== null;
+  if (authTokenExists) {
+    store.dispatch("loginUserWithToken", { auth_token });
+  }
+}
+
 import { Quasar } from "quasar"
 import axios from "axios"
 import VueAxios from "vue-axios"

@@ -6,10 +6,15 @@ const state = {
   auth_token: null,
   user: {
     id: null,
-    username: null,
     email: null,
+    role: null,
+    first_name: null,
+    last_name: null,
+    address: null,
+    phone_number: null,
   },
 };
+
 const getters = {
   getAuthToken(state) {
     return state.auth_token;
@@ -20,12 +25,28 @@ const getters = {
   getUserID(state) {
     return state.user?.id;
   },
+  getUserFirstName(state) {
+    return state.user?.first_name;
+  },
+  getUserLastName(state) {
+    return state.user?.last_name;
+  },
+  getUserRole(state) {
+    return state.user?.role;
+  },
+  getUserAddress(state) {
+    return state.user?.address;
+  },
+  getUserPhoneNumber(state) {
+    return state.user?.phone_number;
+  },
   isLoggedIn(state) {
     const loggedOut =
       state.auth_token == null || state.auth_token == JSON.stringify(null);
     return !loggedOut;
   },
 };
+
 const actions = {
   registerUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
@@ -54,6 +75,7 @@ const actions = {
     });
   },
   logoutUser({ commit }) {
+    console.log;
     const config = {
       headers: {
         authorization: state.auth_token,
@@ -90,6 +112,7 @@ const actions = {
     });
   },
 };
+
 const mutations = {
   setUserInfo(state, data) {
     state.user = data.data.user;
@@ -104,14 +127,19 @@ const mutations = {
   resetUserInfo(state) {
     state.user = {
       id: null,
-      username: null,
       email: null,
+      role: null,
+      first_name: null,
+      last_name: null,
+      address: null,
+      phone_number: null,
     };
     state.auth_token = null;
     localStorage.removeItem("auth_token");
     axios.defaults.headers.common["Authorization"] = null;
   },
 };
+
 export default {
   state,
   getters,
