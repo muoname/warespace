@@ -16,6 +16,7 @@ class Api::V1::SpacesController < ApplicationController
   # GET /spaces/new
   def new
     @space = Space.new
+    render json: @space
   end
 
   # GET /spaces/1/edit
@@ -25,15 +26,11 @@ class Api::V1::SpacesController < ApplicationController
   # POST /spaces or /spaces.json
   def create
     @space = Space.new(space_params)
-    @space.user_id = current_user.id
-
-    respond_to do |format|
       if @space.save
-        format.json { render :show, status: :created, location: @space }
+        render :show, status: :created, location: @space
       else
-        format.json { render json: @space.errors, status: :unprocessable_entity }
+        render json: @space.errors, status: :unprocessable_entity
       end
-    end
   end
 
   # PATCH/PUT /spaces/1 or /spaces/1.json
