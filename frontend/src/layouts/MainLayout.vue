@@ -8,8 +8,8 @@
           <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         </div>
         <div class="col-3 gt-sm q-pl-md">
-          <q-btn v-if="isLoggedIn" align="right" outline rounded label="LOG OUT" icon="fa-solid fa-right-from-bracket" color="white"
-            @click="logoutUser" />
+          <q-btn v-if="isLoggedIn" align="right" outline rounded label="Account" icon="fa-solid fa-user-gear" color="white"
+            to="/users/account" />
           <q-btn v-else
             align="right"
             outline
@@ -117,11 +117,11 @@
       <q-footer class="dheader-color text-white">
         <div class="row flex-center q-pa-md">
           <div v-if="isLoggedIn" class="col justify-right">
-            <q-btn flat color="white" @click="logoutUser" class="q-pa-xs">
+            <q-btn flat color="white" to="/users/account" class="q-pa-xs">
               <div class="row items-center no-wrap">
-                <q-icon left name="fa-solid fa-user" size="20px" />
+                <q-icon left name="fa-solid fa-user-gear" size="20px" />
                 <div class="text-center">
-                  LogOut
+                  Account
                 </div>
               </div>
             </q-btn>
