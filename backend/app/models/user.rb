@@ -13,7 +13,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
           :jwt_authenticatable,
           jwt_revocation_strategy: JwtDenylist
-  enum role: [:user, :admin]
+  enum role: [:renter, :admin, :host]
   after_initialize :set_default_role, :if => :new_record?
 
   # def generate_jwt
@@ -23,7 +23,7 @@ class User < ApplicationRecord
   # end
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :renter
   end
 
   def user_fullname

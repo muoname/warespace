@@ -33,7 +33,7 @@ export default {
         const phone_number = ref(null)
         const email = ref(null)
         const password = ref(null)
-        const role = ref(2)
+        const is_renter = ref(true)
         const accept = ref(false)
 
         return {
@@ -43,7 +43,7 @@ export default {
             email,
             password,
             accept,
-            role,
+            is_renter,
         }
     },
     methods: {
@@ -58,7 +58,7 @@ export default {
                         first_name: this.first_name,
                         last_name: this.last_name,
                         phone_number: this.phone_number,
-                        role: this.role,
+                        is_renter: this.is_renter,
                     },
                 };
                 this.registerUser(data);
