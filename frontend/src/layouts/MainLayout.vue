@@ -8,7 +8,9 @@
           <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         </div>
         <div class="col-3 gt-sm q-pl-md">
-          <q-btn
+          <q-btn v-if="isLoggedIn" align="right" outline rounded label="LOG OUT" icon="fa-solid fa-right-from-bracket" color="white"
+            @click="logoutUser" />
+          <q-btn v-else
             align="right"
             outline
             rounded
@@ -48,9 +50,10 @@
       <div class="row-inline justify-between flex-center gt-sm">
         <div class="col">
           <q-tabs v-model="tab" align="center">
-            <q-tab name="home" icon="fa-solid fa-house" label="Home" href="/" />
+            <q-route-tab name="home" icon="fa-solid fa-house" label="Home" to="/"/>
             <q-tab name="map" icon="fa-solid fa-map" label="Map" />
-            <q-tab name="shop" icon="fa-solid fa-shop" label="Browse" />
+            <q-route-tab name="shop" icon="fa-solid fa-shop" label="Browse" to="/host/listing"/>
+            
           </q-tabs>
         </div>
       </div>
@@ -89,9 +92,9 @@
         </div>
         <div class="q-pl-md">
           <q-list padding class="menu-list">
-            <q-item clickable v-ripple>
+            <q-item to="/" clickable v-ripple>
               <q-item-section avatar>
-                <q-icon name="fa-solid fa-house" href="/"></q-icon>
+                <q-icon name="fa-solid fa-house"></q-icon>
               </q-item-section>
               <q-item-section> Home </q-item-section>
             </q-item>
@@ -101,7 +104,7 @@
               </q-item-section>
               <q-item-section> Map </q-item-section>
             </q-item>
-            <q-item clickable v-ripple>
+            <q-item to="/host/listing" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="fa-solid fa-shop"></q-icon>
               </q-item-section>
@@ -118,7 +121,7 @@
               <div class="row items-center no-wrap">
                 <q-icon left name="fa-solid fa-user" size="20px" />
                 <div class="text-center">
-                  LogOut Hello {{ this.getUserFirstName }}
+                  LogOut
                 </div>
               </div>
             </q-btn>
@@ -127,7 +130,7 @@
             <q-btn flat color="white" @click="prompt = true" class="q-pa-xs">
               <div class="row items-center no-wrap">
                 <q-icon left name="fa-solid fa-user" size="20px" />
-                <div class="text-center">Log In {{ isLoggedIn }} </div>
+                <div class="text-center">Log In </div>
               </div>
             </q-btn>
           </div>

@@ -14,7 +14,10 @@
         <q-toggle v-model="accept" label="I accept the license and terms" />
     
         <div>
-            <q-btn label="Submit" type="submit" color="primary" />
+            <router-link :to="{ name: 'home_path' }">
+                <q-btn label="Submit" type="submit" color="primary" />
+            </router-link>
+            
         </div>
     </q-form>
 </template>

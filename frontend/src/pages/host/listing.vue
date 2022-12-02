@@ -4,7 +4,7 @@
     <div class="col-4 q-pa-sm"></div>
     <div class="col-8 q-pa-sm">
       <div class="row flex-center float-right q-pr-lg q-pt-md">
-        <q-btn
+        <q-btn v-if="isLoggedIn"
           rounded
           color="primary"
           icon="fa-solid fa-plus"
@@ -42,8 +42,19 @@
 import axios from "axios";
 import { ref } from "vue";
 import Space_Form from "../shared/_space_form.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters([
+      "getAuthToken",
+      "getUserEmail",
+      "getUserID",
+      "isLoggedIn",
+      "getUserFirstName",
+    ]),
+  },
   data() {
+    
     return {
       spaces: [],
     };
