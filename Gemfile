@@ -72,3 +72,8 @@ group :test do
 end
 
 gem "devise", "~> 4.8"
+gem "vite_rails"
+gem "gon"
+gem "jwt"
+gem "devise-jwt", "~> 0.10.0"
+gem "rack-cors", "~> 1.1"

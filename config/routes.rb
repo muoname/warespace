@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
-  resources :spaces
-  resources :spacecategories
-  root 'pages#home'
-  devise_for :users
+  devise_for :users,
+             controllers: {
+               sessions: 'users/sessions',
+               registrations: 'users/registrations'
+             }
+  get '/member-data', to: 'members#show'
+
+  namespace :api do
+    namespace :v1 do
+      resources :spaces
+      resources :spacecategories
+      resources :rents
+    end
+  end
+  
+  root 'application#index'
+  match "*path", to: "application#index", format: false, via: :get
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

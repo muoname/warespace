@@ -1,13 +1,16 @@
-class SpacecategoriesController < ApplicationController
+class Api::V1::SpacecategoriesController < ApplicationController
   before_action :set_spacecategory, only: %i[ show edit update destroy ]
 
   # GET /spacecategories or /spacecategories.json
   def index
     @spacecategories = Spacecategory.all
+
+    render json: @spacecategories
   end
 
   # GET /spacecategories/1 or /spacecategories/1.json
   def show
+    render json: @spacecategory
   end
 
   # GET /spacecategories/new

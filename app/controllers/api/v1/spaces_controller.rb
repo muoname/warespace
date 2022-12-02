@@ -1,13 +1,16 @@
-class SpacesController < ApplicationController
+class Api::V1::SpacesController < ApplicationController
   before_action :set_space, only: %i[ show edit update destroy ]
 
   # GET /spaces or /spaces.json
   def index
     @spaces = Space.all
+
+    render json: @spaces
   end
 
   # GET /spaces/1 or /spaces/1.json
   def show
+    render json: @space
   end
 
   # GET /spaces/new
@@ -26,10 +29,8 @@ class SpacesController < ApplicationController
 
     respond_to do |format|
       if @space.save
-        format.html { redirect_to space_url(@space), notice: "Space was successfully created." }
         format.json { render :show, status: :created, location: @space }
       else
-        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @space.errors, status: :unprocessable_entity }
       end
     end
