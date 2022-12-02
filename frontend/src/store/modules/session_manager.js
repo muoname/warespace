@@ -12,6 +12,7 @@ const state = {
     last_name: null,
     address: null,
     phone_number: null,
+    is_renter: null
   },
 };
 
@@ -31,8 +32,8 @@ const getters = {
   getUserLastName(state) {
     return state.user?.last_name;
   },
-  getUserRole(state) {
-    return state.user?.role;
+  isRenter(state) {
+    return state.user?.is_renter;
   },
   getUserAddress(state) {
     return state.user?.address;
@@ -133,6 +134,7 @@ const mutations = {
       last_name: null,
       address: null,
       phone_number: null,
+      is_renter: null,
     };
     state.auth_token = null;
     localStorage.removeItem("auth_token");

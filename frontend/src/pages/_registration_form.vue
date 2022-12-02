@@ -1,5 +1,5 @@
 <template>
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+    <q-form @submit="onSubmit" class="q-gutter-md">
         <q-input filled v-model="first_name" label="First Name" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your First Name']" />
         <q-input filled v-model="last_name" label="Last Name" lazy-rules
@@ -14,9 +14,7 @@
         <q-toggle v-model="accept" label="I accept the license and terms" />
     
         <div>
-            <router-link :to="{ name: 'home_path' }">
-                <q-btn label="Submit" type="submit" color="primary" />
-            </router-link>
+                <q-btn label="Submit" type="submit" color="primary" to="/"/>
             
         </div>
     </q-form>
@@ -65,6 +63,7 @@ export default {
                     },
                 };
                 this.registerUser(data);
+                
             }
             
         },

@@ -1,11 +1,14 @@
 <template>
     <template v-if="isLoggedIn">
+        <div v-if="statusExists">
+            
+        </div>
         <div class="row q-pa-lg text-h4 text-black justify-center">
             <div class="col-3 text-bold">
                 Account <br>
                 <q-btn flat color="black" icon="fa-solid fa-right-from-bracket" label="Logout" dense @click="logoutUser" /> <br>
-                <q-btn v-if="isRenter" flat color="black" icon="fa-solid fa-repeat" label="Switch to Host" dense />
-                <q-btn v-else flat color="black" icon="fa-solid fa-repeat" label="Switch to Renter" dense /> <br>
+                <q-btn v-if="isRenter" flat color="black" icon="fa-solid fa-repeat" label="Switch to Host" dense @click="switchUserType"/>
+                <q-btn v-else flat color="black" icon="fa-solid fa-repeat" label="Switch to Renter" dense @click="switchUserType"/> <br>
         
             </div>
             <div class="col-6">
@@ -55,11 +58,21 @@ export default {
             "getUserPhoneNumber"
         ]),
     },
+    setup() {
+        
+    },
     methods: {
         ...mapActions(["loginUser", "logoutUser"]),
 
         switchUserType() {
-            axios.patch("")
+            let self = this;
+            axios.patch(`http://localhost:3000/users/${this.getUserID}`, {
+                id: this.getUserID,
+                is_renter: !this.isRenter
+            }).then((response) => {
+                this.$router.go()
+                
+            })
         }
         
     },

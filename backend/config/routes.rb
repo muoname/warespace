@@ -11,10 +11,10 @@ Rails.application.routes.draw do
       resources :spaces
       resources :spacecategories
       resources :rents
-      patch 'users/:id', to: 'users/sessions#update_info'
+      
     end
   end
-  
+  patch 'users/:id', to: 'users#update_info'
   root 'application#index'
   match "*path", to: "application#index", format: false, via: :get
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
