@@ -103,7 +103,7 @@ export default {
         this.categories = response.data;
       });
     axios.get("http://localhost:3000/api/v1/spaces/new").then((response) => {
-      console.log(response.data)
+      
     })
   },
 
@@ -121,8 +121,8 @@ export default {
           weekly_rate: this.weekly_rate,
         })
           .then((response) => {
-            commit("setUserInfo", response);
             resolve(response);
+            console.log(response.data)
           })
           .catch((error) => {
             reject(error);

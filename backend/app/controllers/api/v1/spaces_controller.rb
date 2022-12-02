@@ -27,7 +27,7 @@ class Api::V1::SpacesController < ApplicationController
   def create
     @space = Space.new(space_params)
       if @space.save
-        render :show, status: :created, location: @space
+        render json: @space
       else
         render json: @space.errors, status: :unprocessable_entity
       end

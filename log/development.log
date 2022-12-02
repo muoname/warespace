@@ -1,0 +1,165 @@
+Started POST "/users/sign_in" for ::1 at 2022-12-02 15:01:08 +0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (304.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"abcd@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"abcd@gmail.com", "password"=>"[FILTERED]"}}}
+HTTP Origin header (http://localhost:9000) didn't match request.base_url (http://localhost:3000)
+  [1m[36mUser Load (232.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'abcd@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 2185ms (Views: 1.7ms | ActiveRecord: 1527.1ms | Allocations: 34174)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2022-12-02 15:01:28 +0800
+Processing by Users::SessionsController#destroy as HTML
+  [1m[36mUser Load (306.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users/sessions_controller.rb:15:in `respond_to_on_destroy'
+  [1m[36mJwtDenylist Exists? (302.1ms)[0m  [1m[34mSELECT 1 AS one FROM `jwt_denylist` WHERE `jwt_denylist`.`jti` = '1a1be4aa-f8c3-4bf6-8698-87aef9c23e15' LIMIT 1[0m
+  ↳ app/controllers/users/sessions_controller.rb:15:in `respond_to_on_destroy'
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 200 OK in 1207ms (Views: 0.2ms | ActiveRecord: 907.5ms | Allocations: 3505)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  [1m[36mJwtDenylist Load (291.1ms)[0m  [1m[34mSELECT `jwt_denylist`.* FROM `jwt_denylist` WHERE `jwt_denylist`.`jti` = '1a1be4aa-f8c3-4bf6-8698-87aef9c23e15' AND `jwt_denylist`.`exp` = '2022-12-02 08:01:14' LIMIT 1[0m
+  [1m[36mTRANSACTION (303.6ms)[0m  [1m[35mBEGIN[0m
+Started DELETE "/users/sign_out" for ::1 at 2022-12-02 15:01:30 +0800
+Processing by Users::SessionsController#destroy as HTML
+  [1m[36mJwtDenylist Create (206.7ms)[0m  [1m[32mINSERT INTO `jwt_denylist` (`jti`, `exp`, `created_at`, `updated_at`) VALUES ('1a1be4aa-f8c3-4bf6-8698-87aef9c23e15', '2022-12-02 08:01:14', '2022-12-02 07:01:30.526225', '2022-12-02 07:01:30.526225')[0m
+  [1m[36mTRANSACTION (209.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (305.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users/sessions_controller.rb:15:in `respond_to_on_destroy'
+  [1m[36mJwtDenylist Exists? (303.5ms)[0m  [1m[34mSELECT 1 AS one FROM `jwt_denylist` WHERE `jwt_denylist`.`jti` = '1a1be4aa-f8c3-4bf6-8698-87aef9c23e15' LIMIT 1[0m
+  ↳ app/controllers/users/sessions_controller.rb:15:in `respond_to_on_destroy'
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 401 Unauthorized in 2104ms (Views: 0.5ms | ActiveRecord: 913.1ms | Allocations: 4659)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  [1m[36mJwtDenylist Load (290.7ms)[0m  [1m[34mSELECT `jwt_denylist`.* FROM `jwt_denylist` WHERE `jwt_denylist`.`jti` = '1a1be4aa-f8c3-4bf6-8698-87aef9c23e15' AND `jwt_denylist`.`exp` = '2022-12-02 08:01:14' LIMIT 1[0m
+Started POST "/users/sign_in" for ::1 at 2022-12-02 15:02:06 +0800
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"abcd@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"abcd@gmail.com", "password"=>"[FILTERED]"}}}
+HTTP Origin header (http://localhost:9000) didn't match request.base_url (http://localhost:3000)
+  [1m[36mUser Load (305.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'abcd@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 1133ms (Views: 1.3ms | ActiveRecord: 305.9ms | Allocations: 2107)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2022-12-02 15:02:17 +0800
+Processing by Users::SessionsController#destroy as HTML
+  [1m[36mUser Load (246.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users/sessions_controller.rb:15:in `respond_to_on_destroy'
+  [1m[36mJwtDenylist Exists? (300.2ms)[0m  [1m[34mSELECT 1 AS one FROM `jwt_denylist` WHERE `jwt_denylist`.`jti` = 'b9676479-f32d-41fe-a523-f5d897ffc837' LIMIT 1[0m
+  ↳ app/controllers/users/sessions_controller.rb:15:in `respond_to_on_destroy'
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 200 OK in 774ms (Views: 0.6ms | ActiveRecord: 546.6ms | Allocations: 1671)
+
+
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  [1m[36mJwtDenylist Load (286.2ms)[0m  [1m[34mSELECT `jwt_denylist`.* FROM `jwt_denylist` WHERE `jwt_denylist`.`jti` = 'b9676479-f32d-41fe-a523-f5d897ffc837' AND `jwt_denylist`.`exp` = '2022-12-02 08:02:07' LIMIT 1[0m
+  [1m[36mTRANSACTION (299.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mJwtDenylist Create (297.1ms)[0m  [1m[32mINSERT INTO `jwt_denylist` (`jti`, `exp`, `created_at`, `updated_at`) VALUES ('b9676479-f32d-41fe-a523-f5d897ffc837', '2022-12-02 08:02:07', '2022-12-02 07:02:18.660701', '2022-12-02 07:02:18.660701')[0m
+  [1m[36mTRANSACTION (301.5ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/users/sign_in" for ::1 at 2022-12-02 15:27:29 +0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (302.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"user"=>{"email"=>"abcd@gmail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"abcd@gmail.com", "password"=>"[FILTERED]"}}}
+HTTP Origin header (http://localhost:9000) didn't match request.base_url (http://localhost:3000)
+  [1m[36mUser Load (296.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'abcd@gmail.com' ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 2531ms (Views: 2.0ms | ActiveRecord: 1753.0ms | Allocations: 30225)
+
+
+Started GET "/" for ::1 at 2022-12-02 15:42:31 +0800
+Started GET "/api/v1/spaces" for 127.0.0.1 at 2022-12-02 15:42:32 +0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (307.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ApplicationController#index as HTML
+Processing by Api::V1::SpacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering application.html.erb within layouts/application
+  Rendered application.html.erb within layouts/application (Duration: 29.6ms | Allocations: 1757)
+  [1m[36mSpace Load (307.4ms)[0m  [1m[34mSELECT `spaces`.* FROM `spaces`[0m
+  ↳ app/controllers/api/v1/spaces_controller.rb:14:in `index'
+  Rendered layout layouts/application.html.erb (Duration: 1898.0ms | Allocations: 117112)
+Completed 500 Internal Server Error in 2286ms (ActiveRecord: 0.0ms | Allocations: 132323)
+
+
+  
+ActionView::Template::Error (Permission denied @ rb_file_s_rename - (C:/Users/Liana/Downloads/warespace/code-wizardz/tmp/cache/assets/sprockets/v4.0.0/PF/PFcVlozjSvF-S4riuLGAIg23Q9m_CV2L8o1zIn4C5nc.cache.30360.5336.545371, C:/Users/Liana/Downloads/warespace/code-wizardz/tmp/cache/assets/sprockets/v4.0.0/PF/PFcVlozjSvF-S4riuLGAIg23Q9m_CV2L8o1zIn4C5nc.cache)):
+  
+sprockets (4.1.1) lib/sprockets/path_utils.rb:362:in `rename'
+sprockets (4.1.1) lib/sprockets/path_utils.rb:362:in `atomic_write'
+sprockets (4.1.1) lib/sprockets/cache/file_store.rb:112:in `set'
+sprockets (4.1.1) lib/sprockets/cache.rb:227:in `set'
+sprockets (4.1.1) lib/sprockets/cache.rb:143:in `set'
+sprockets (4.1.1) lib/sprockets/loader.rb:263:in `store_asset'
+sprockets (4.1.1) lib/sprockets/loader.rb:226:in `load_from_unloaded'
+sprockets (4.1.1) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.1.1) lib/sprockets/loader.rb:337:in `fetch_asset_from_dependency_cache'
+sprockets (4.1.1) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `block in load'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `fetch'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.1.1) lib/sprockets/base.rb:81:in `find_asset'
+sprockets (4.1.1) lib/sprockets/base.rb:88:in `find_all_linked_assets'
+sprockets (4.1.1) lib/sprockets/manifest.rb:125:in `each'
+sprockets (4.1.1) lib/sprockets/manifest.rb:125:in `to_a'
+sprockets (4.1.1) lib/sprockets/manifest.rb:125:in `block (2 levels) in find'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:24:in `block in execute'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `block in synchronize'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `synchronize'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `synchronize'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:22:in `execute'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/promise.rb:564:in `block in realize'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `run_task'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:343:in `block (3 levels) in create_worker'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `loop'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block (2 levels) in create_worker'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:333:in `catch'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:333:in `block in create_worker'
+Completed 200 OK in 3389ms (Views: 1419.9ms | ActiveRecord: 1529.8ms | Allocations: 190546)
+
+
+Started GET "/" for ::1 at 2022-12-02 15:43:09 +0800
+Processing by ApplicationController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering application.html.erb within layouts/application
+  Rendered application.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+Building with Vite ⚡️
+yarn run v1.22.18
+
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+warning package.json: No license field
+warning ..\..\..\package.json: No license field
+error Command "vite" not found.
+
+Build with Vite failed! ❌
+  Rendered layout layouts/application.html.erb (Duration: 1725.4ms | Allocations: 41079)
+Completed 500 Internal Server Error in 1737ms (ActiveRecord: 0.0ms | Allocations: 41417)
+
+
+  
+ActionView::Template::Error (Vite Ruby can't find entrypoints/application.js in public/vite-dev/manifest.json or public/vite-dev/manifest-assets.json.
+
+Possible causes:
+  - The last build failed. Try running `bin/vite build --clear --mode=development` manually and check for errors.
+
+Errors:
+  warning package.json: No license field
+  warning ..\..\..\package.json: No license field
+  error Command "vite" not found.
+
+
+Visit the Troubleshooting guide for more information:
+  https://vite-ruby.netlify.app/guide/troubleshooting.html#troubleshooting
+
+
+
+):
+     8: 
+     9:     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    10:     <%= vite_client_tag %>
+    11:     <%= vite_javascript_tag 'application' %>
+    12:     <!--
+    13:       If using a TypeScript entrypoint file:
+    14:         vite_typescript_tag 'application'
+  
+app/views/layouts/application.html.erb:11
+app/controllers/application_controller.rb:11:in `index'
