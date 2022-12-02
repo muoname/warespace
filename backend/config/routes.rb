@@ -14,7 +14,9 @@ Rails.application.routes.draw do
       
     end
   end
-  patch 'users/:id', to: 'users#update_info'
+  patch 'users/switch/:id', to: 'users#switch'
+  patch 'users/:id', to: 'users#update'
+  get 'users/:id', to: 'users#show'
   root 'application#index'
   match "*path", to: "application#index", format: false, via: :get
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
