@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :spaces
       resources :spacecategories
       resources :rents
+      patch 'users/:id', to: 'users/sessions#update_info'
     end
   end
   
