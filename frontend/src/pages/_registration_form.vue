@@ -2,7 +2,7 @@
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
         <q-input filled v-model="first_name" label="First Name" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your First Name']" />
-        <q-input filled v-model="first_name" label="Last Name" lazy-rules
+        <q-input filled v-model="last_name" label="Last Name" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Last Name']" />
         <q-input filled v-model="phone_number" label="Phone Number" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Phone Number']" />
@@ -10,14 +10,11 @@
             :rules="[(val, rules) => rules.email(val) || 'Please enter a valid email address']" />
         <q-input filled type="password" v-model="password" label="Password" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter a Password']" />
-        <q-input filled type="password" v-model="password_confirmation" label="Confirm Password" lazy-rules
-            :rules="[val => val && val.length > 0 || 'Enter a Password']" />
     
         <q-toggle v-model="accept" label="I accept the license and terms" />
     
         <div>
             <q-btn label="Submit" type="submit" color="primary" />
-            <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
         </div>
     </q-form>
 </template>
@@ -26,15 +23,16 @@
 <script>
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
+import "../store/index.js";
+import { mapActions, mapGetters } from "vuex";
 export default {
+    
     setup() {
-        const $q = useQuasar()
         const first_name = ref(null)
         const last_name = ref(null)
         const phone_number = ref(null)
         const email = ref(null)
         const password = ref(null)
-        const password_confirmation = ref(null)
         const accept = ref(false)
 
         return {
@@ -43,40 +41,27 @@ export default {
             phone_number,
             email,
             password,
-            password_confirmation,
             accept,
-
-            onSubmit() {
-                if (accept.value !== true) {
-                    $q.notify({
-                        color: 'red-5',
-                        textColor: 'white',
-                        icon: 'warning',
-                        message: 'You need to accept the license and terms first'
-                    })
-                }
-                else {
-                    $q.notify({
-                        color: 'green-4',
-                        textColor: 'white',
-                        icon: 'cloud_done',
-                        message: 'Submitted'
-                    })
-                }
-            },
-
-            onReset() {
-                first_name.value = null
-                last_name.value = null
-                phone_number.value = null
-                email.value = null
-                password.value = null
-                password_confirmation.value = null
-                accept.value = false
-
-            }
         }
-    }
+    },
+    methods: {
+        
+        ...mapActions(["registerUser", "loginUser", "logoutUser"]),
+        onSubmit(event) {
+            event.preventDefault();
+                let data = {
+                    user: {
+                        email: this.email,
+                        password: this.password,
+                        first_name: this.first_name,
+                        last_name: this.last_name,
+                        phone_number: this.phone_number,
+                    },
+                };
+                this.registerUser(data);
+            }
+            
+        },
 
 }
 </script>

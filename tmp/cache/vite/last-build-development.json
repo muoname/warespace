@@ -1,7 +1,0 @@
-{
-  "success": false,
-  "errors": "warning package.json: No license field\nwarning ..\\..\\..\\package.json: No license field\nerror Command \"vite\" not found.\n",
-  "timestamp": "2022-12-02 15:43:11",
-  "vite_ruby": "3.2.7",
-  "digest": "9a419545b05b14d72a4223e41d717d60e93c7a88"
-}
