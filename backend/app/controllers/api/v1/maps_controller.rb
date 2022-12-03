@@ -14,7 +14,7 @@ class Api::V1::MapsController < ApplicationController
     # c = User.find(me)
     # @user_addr = @user.address
 
-    @spaces = Space.near("Sawangan, Legazpi City", 100, units: :km)  
+    @spaces = Space.near(params[:address], 10, units: :km)  
     render json: @spaces
     # puts @spaces
 

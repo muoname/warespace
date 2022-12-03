@@ -13,7 +13,9 @@ const state = {
     last_name: null,
     address: null,
     phone_number: null,
-    is_renter: null
+    is_renter: null,
+    longitude: null,
+    latitude: null,
   },
 };
 
@@ -41,6 +43,12 @@ const getters = {
   },
   getUserPhoneNumber(state) {
     return state.user?.phone_number;
+  },
+  getLat(state) {
+    return state.user?.latitude;
+  },
+  getLng(state) {
+    return state.user?.longitude;
   },
   getStatus(state) {
     return state.status;
@@ -143,6 +151,8 @@ const mutations = {
       address: null,
       phone_number: null,
       is_renter: null,
+      longitude: null,
+      latitude: null,
     };
     state.auth_token = null;
     localStorage.removeItem("auth_token");
