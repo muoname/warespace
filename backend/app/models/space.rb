@@ -1,4 +1,15 @@
 class Space < ApplicationRecord
+    before_save :coord_calculator
+    geocoded_by :location
+
+    private
+
+        def coord_calculator
+            results = Geocoder.search(self.location)
+            self.latitude = results.first.coordinates[0]
+            self.longitude = results.first.coordinates[1]
+        end
+        
     belongs_to :user
     belongs_to :spacecategory
 
@@ -26,6 +37,11 @@ class Space < ApplicationRecord
             pic.variant(resize_to_limit: [150, 150]).processed
         end
 
+    end
+
+    def latlong
+        addr = Geocoder.search(location)
+        addr.first.coordinates
     end
 
 end
