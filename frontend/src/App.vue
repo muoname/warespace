@@ -4,9 +4,25 @@
 
 <script>
 import { defineComponent } from 'vue'
-
+import "./store/index.js"
+import { mapActions, mapGetters } from "vuex";
+import { useStore } from 'vuex'
 export default defineComponent({
   name: 'App',
+  computed: {
+    ...mapGetters([
+      "getAuthToken",
+      "getUserEmail",
+      "getUserID",
+      "isLoggedIn",
+      "getUserFirstName",
+      "getUserLastName",
+      "isRenter",
+      "getUserPhoneNumber",
+      "getLat",
+      "getLng",
+    ]),
+  },
   beforeCreate() {
     let localAuthToken = localStorage.auth_token;
     let cookieExists = localAuthToken !== "undefined" && localAuthToken !== null;

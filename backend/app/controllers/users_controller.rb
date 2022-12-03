@@ -16,6 +16,7 @@ def update
     @user.phone_number = params[:phone_number]
     @user.email = params[:email]
     @user.password = params[:password]
+    @user.address = params[:address]
     if @user.save
         render json: @user
     else

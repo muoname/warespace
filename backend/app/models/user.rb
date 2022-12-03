@@ -1,4 +1,18 @@
 class User < ApplicationRecord
+  before_save :coord_calculator
+
+  geocoded_by :address
+
+  after_validation :geocode, if: :address_changed?
+
+
+    private
+
+        def coord_calculator
+            results = Geocoder.search(self.address)
+            self.latitude = results.first.coordinates[0]
+            self.longitude = results.first.coordinates[1]
+        end
   
   has_many :spaces
 
