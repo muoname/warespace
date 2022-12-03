@@ -3,6 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:3000/";
 
 const state = {
+  status: null,
   auth_token: null,
   user: {
     id: null,
@@ -41,6 +42,9 @@ const getters = {
   getUserPhoneNumber(state) {
     return state.user?.phone_number;
   },
+  getStatus(state) {
+    return state.status;
+  },
   isLoggedIn(state) {
     const loggedOut =
       state.auth_token == null || state.auth_token == JSON.stringify(null);
@@ -49,6 +53,9 @@ const getters = {
 };
 
 const actions = {
+  setState (status) {
+    state.status = status;
+  },
   registerUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
       axios

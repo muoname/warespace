@@ -43,7 +43,7 @@ export default {
     },
 
     setup() {
-        console.log("test")
+        
         const first_name = ref(null)
         const last_name = ref(null)
         const phone_number = ref(null)

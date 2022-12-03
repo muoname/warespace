@@ -1,7 +1,7 @@
 <template>
     <template v-if="isLoggedIn">
-        <div v-if="statusExists">
-
+        <div>
+            
         </div>
         <div class="row q-pa-lg text-h4 text-black justify-center">
             <div class="col-3 text-bold">
@@ -59,7 +59,7 @@ export default {
             "getUserFirstName",
             "getUserLastName",
             "isRenter",
-            "getUserPhoneNumber"
+            "getUserPhoneNumber",
         ]),
     },
     setup() {
