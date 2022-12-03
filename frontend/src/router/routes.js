@@ -30,6 +30,11 @@ const routes = [
         name: "edit_account_path",
         component: () => import("pages/edit_account.vue"),
       },
+      {
+        path: "/map",
+        name: "map_path",
+        component: () => import("pages/map.vue"),
+      },
     ],
   },
   {
