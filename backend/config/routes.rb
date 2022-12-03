@@ -8,10 +8,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get '/search/myspaces', to: 'spaces#myspaces'
+      get '/search/myrents', to: 'rents#myrents'
       resources :spaces
       resources :spacecategories
       resources :rents
-      
     end
   end
   patch 'users/switch/:id', to: 'users#switch'

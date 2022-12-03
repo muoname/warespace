@@ -1,6 +1,11 @@
 class Api::V1::SpacesController < ApplicationController
   before_action :set_space, only: %i[ show edit update destroy ]
 
+  def myspaces     
+    @spaces = Space.where('user_id LIKE ?', params[:id])
+    render json: @spaces
+  end
+
   # GET /spaces or /spaces.json
   def index
     @spaces = Space.all

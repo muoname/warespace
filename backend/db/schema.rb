@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_02_115749) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_03_163047) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -57,6 +57,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_02_115749) do
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
+  create_table "rents", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "space_id"
+    t.date "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "spacecategories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
@@ -76,6 +84,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_02_115749) do
     t.text "space_policies"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "street"
+    t.string "city"
+    t.integer "zipcode"
+    t.string "province"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -92,6 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_02_115749) do
     t.text "address"
     t.string "phone_number"
     t.boolean "is_renter"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
