@@ -4,6 +4,8 @@
             :rules="[val => val && val.length > 0 || 'Enter your First Name']" />
         <q-input filled v-model="last_name" label="Last Name" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Last Name']" />
+        <q-input filled type="text-area" v-model="address" label="Address" lazy-rules
+            :rules="[val => val && val.length > 0 || 'Enter your Last Name']" />
         <q-input filled v-model="phone_number" label="Phone Number" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Phone Number']" />
         <q-input filled type="email" v-model="email" label="Email Address" lazy-rules
@@ -14,7 +16,7 @@
         <q-toggle v-model="accept" label="I accept the license and terms" />
     
         <div>
-            <q-btn label="Submit" type="submit" color="primary" to="/"/>
+                <q-btn label="Submit" type="submit" color="primary"/>
             
         </div>
     </q-form>
@@ -36,6 +38,7 @@ export default {
         const password = ref(null)
         const is_renter = ref(true)
         const accept = ref(false)
+        const address = ref(null)
 
         return {
             first_name,
@@ -45,6 +48,7 @@ export default {
             password,
             accept,
             is_renter,
+            address,
         }
     },
     methods: {
@@ -60,6 +64,7 @@ export default {
                         last_name: this.last_name,
                         phone_number: this.phone_number,
                         is_renter: this.is_renter,
+                        address: this.address
                     },
                 };
                 this.registerUser(data);
