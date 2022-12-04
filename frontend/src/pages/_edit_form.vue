@@ -5,7 +5,15 @@
         <q-input filled v-model="last_name" label="Last Name" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Last Name']" />
         <q-input filled type="text-area" v-model="address" label="Address" lazy-rules
-            :rules="[val => val && val.length > 0 || 'Enter your Last Name']" />
+            :rules="[val => val && val.length > 0 || 'Enter your Address']" />
+        <q-input filled type="text-area" v-model="street" label="Street" lazy-rules
+            :rules="[val => val && val.length > 0 || 'Enter your Street']" />
+        <q-input filled type="text-area" v-model="city" label="City" lazy-rules
+            :rules="[val => val && val.length > 0 || 'Enter your City']" />
+        <q-input filled type="text-area" v-model="zipcode" label="Zip Code" lazy-rules
+            :rules="[val => val && val.length > 0 || 'Enter your Zip Code']" />
+        <q-input filled type="text-area" v-model="province" label="Province" lazy-rules
+            :rules="[val => val && val.length > 0 || 'Enter your Province']" />
         <q-input filled v-model="phone_number" label="Phone Number" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Phone Number']" />
         <q-input filled type="email" v-model="email" label="Email Address" lazy-rules
@@ -52,6 +60,10 @@ export default {
         const email = ref(null)
         const password = ref(null)
         const address = ref(null)
+        const street = ref(null)
+        const city = ref(null)
+        const zipcode = ref(null)
+        const province = ref(null)
         const accept = ref(false)
 
         return {
@@ -62,6 +74,10 @@ export default {
             password,
             accept,
             address,
+            street,
+            zipcode,
+            city,
+            province
         }
     },
 
@@ -76,7 +92,11 @@ export default {
                 phone_number: this.phone_number,
                 email: this.email,
                 password: this.password,
-                address: this.address
+                address: this.address,
+                street: this.street,
+                city: this.city,
+                zipcode: this.zipcode,
+                province: this.province
             }).then((response) => {
                 this.$router.push({name: "account_path"})
 
