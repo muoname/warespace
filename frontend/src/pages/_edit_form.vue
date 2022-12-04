@@ -4,6 +4,8 @@
             :rules="[val => val && val.length > 0 || 'Enter your First Name']" />
         <q-input filled v-model="last_name" label="Last Name" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Last Name']" />
+        <q-input filled type="text-area" v-model="address" label="Address" lazy-rules
+            :rules="[val => val && val.length > 0 || 'Enter your Last Name']" />
         <q-input filled v-model="phone_number" label="Phone Number" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Phone Number']" />
         <q-input filled type="email" v-model="email" label="Email Address" lazy-rules
@@ -49,6 +51,7 @@ export default {
         const phone_number = ref(null)
         const email = ref(null)
         const password = ref(null)
+        const address = ref(null)
         const accept = ref(false)
 
         return {
@@ -58,6 +61,7 @@ export default {
             email,
             password,
             accept,
+            address,
         }
     },
 
@@ -69,9 +73,10 @@ export default {
                 id: this.getUserID,
                 first_name: this.first_name,
                 last_name: this.last_name,
-                phone_number: this.form_number,
+                phone_number: this.phone_number,
                 email: this.email,
                 password: this.password,
+                address: this.address
             }).then((response) => {
                 this.$router.push({name: "account_path"})
 
