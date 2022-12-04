@@ -4,7 +4,7 @@
     <div class="col-4 q-pa-sm"></div>
     <div class="col-8 q-pa-sm">
       <div class="row flex-center float-right q-pr-lg q-pt-md">
-        <q-btn v-if="isLoggedIn"
+        <q-btn v-if="(isLoggedIn && !isRenter)"
           rounded
           color="primary"
           icon="fa-solid fa-plus"
@@ -51,6 +51,7 @@ export default {
       "getUserID",
       "isLoggedIn",
       "getUserFirstName",
+      "isRenter"
     ]),
   },
   data() {

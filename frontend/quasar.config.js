@@ -12,6 +12,7 @@ const { configure } = require("quasar/wrappers");
 
 module.exports = configure(function (/* ctx */) {
   return {
+    
     eslint: {
       // fix: true,
       // include = [],
@@ -28,7 +29,7 @@ module.exports = configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: ["axios"],
-
+    boot: ['google-maps'],  
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
 

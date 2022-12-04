@@ -3,6 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:3000/";
 
 const state = {
+  status: null,
   auth_token: null,
   user: {
     id: null,
@@ -12,7 +13,9 @@ const state = {
     last_name: null,
     address: null,
     phone_number: null,
-    is_renter: null
+    is_renter: null,
+    longitude: null,
+    latitude: null,
   },
 };
 
@@ -41,6 +44,15 @@ const getters = {
   getUserPhoneNumber(state) {
     return state.user?.phone_number;
   },
+  getLat(state) {
+    return state.user?.latitude;
+  },
+  getLng(state) {
+    return state.user?.longitude;
+  },
+  getStatus(state) {
+    return state.status;
+  },
   isLoggedIn(state) {
     const loggedOut =
       state.auth_token == null || state.auth_token == JSON.stringify(null);
@@ -49,6 +61,9 @@ const getters = {
 };
 
 const actions = {
+  setState (status) {
+    state.status = status;
+  },
   registerUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
       axios
@@ -104,6 +119,7 @@ const actions = {
       axios
         .get(`${BASE_URL}member-data`, config)
         .then((response) => {
+          
           commit("setUserInfoFromToken", response);
           resolve(response);
         })
@@ -135,6 +151,8 @@ const mutations = {
       address: null,
       phone_number: null,
       is_renter: null,
+      longitude: null,
+      latitude: null,
     };
     state.auth_token = null;
     localStorage.removeItem("auth_token");

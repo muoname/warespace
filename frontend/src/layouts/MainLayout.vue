@@ -51,7 +51,7 @@
         <div class="col">
           <q-tabs v-model="tab" align="center">
             <q-route-tab name="home" icon="fa-solid fa-house" label="Home" to="/"/>
-            <q-tab name="map" icon="fa-solid fa-map" label="Map" />
+            <q-route-tab name="map" icon="fa-solid fa-map" label="Map" to="/map"/>
             <q-route-tab name="shop" icon="fa-solid fa-shop" label="Browse" to="/host/listing"/>
             
           </q-tabs>
@@ -92,19 +92,21 @@
         </div>
         <div class="q-pl-md">
           <q-list padding class="menu-list">
-            <q-item to="/" clickable v-ripple>
+            <q-item @click="toHome" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="fa-solid fa-house"></q-icon>
               </q-item-section>
               <q-item-section> Home </q-item-section>
             </q-item>
-            <q-item clickable v-ripple>
+
+            <q-item @click="toMap" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="fa-solid fa-map"></q-icon>
               </q-item-section>
               <q-item-section> Map </q-item-section>
             </q-item>
-            <q-item to="/host/listing" clickable v-ripple>
+
+            <q-item @click="toLists" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="fa-solid fa-shop"></q-icon>
               </q-item-section>
@@ -233,6 +235,21 @@ export default {
       this.loginUser(data);
       this.resetData();
     },
+    toMap(){
+      this.$router.push({
+        name: "map_path"
+      })
+    },
+    toHome(){
+      this.$router.push({
+        name: "home_path"
+      })
+    },
+    toLists(){
+      this.$router.push({
+        name: "listing_path"
+      })
+    },
   },
 
   components: {
@@ -241,6 +258,7 @@ export default {
   },
 
   setup() {
+    
     const leftDrawerOpen = ref(false);
     const testingTrue = ref(false);
 

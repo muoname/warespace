@@ -14,7 +14,7 @@
         <q-toggle v-model="accept" label="I accept the license and terms" />
     
         <div>
-                <q-btn label="Submit" type="submit" color="primary" to="/"/>
+            <q-btn label="Submit" type="submit" color="primary" to="/"/>
             
         </div>
     </q-form>
