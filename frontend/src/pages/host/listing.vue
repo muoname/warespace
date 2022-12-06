@@ -12,7 +12,7 @@
           @click="prompt = true"
         />
       </div>
-      <div class="row inline q-pa-md">
+      <div class="row inline q-pb-xl q-pa-md">
         <div
           v-for="space in spaces"
           v-bind:key="space.id"
