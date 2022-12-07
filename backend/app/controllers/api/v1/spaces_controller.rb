@@ -69,6 +69,6 @@ class Api::V1::SpacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def space_params
-      params.require(:space).permit(:user_id, :spacecategory_id, :title, :location, :description, :space_size, :weekly_rate, :longitude, :latitude, :space_policies, :image, pictures: [])
+      params.require(:space).permit(:user_id, :spacecategory_id, :title, :location, :description, :space_size, :weekly_rate, :longitude, :latitude, :space_policies, :image, :street, :city, :zipcode, :province, pictures: [] )
     end
 end

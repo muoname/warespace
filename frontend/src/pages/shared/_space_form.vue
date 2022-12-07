@@ -36,10 +36,42 @@
           <p></p>
           <q-input
             outlined
+            v-model="street"
+            type="text"
+            autofocus
+            label="Street"
+          />
+          <p></p>
+          <q-input
+            outlined
+            v-model="city"
+            type="text"
+            autofocus
+            label="City"
+          />
+          <p></p>
+          <q-input
+            outlined
+            v-model="zipcode"
+            type="text"
+            autofocus
+            label="Zip Code"
+          />
+          <p></p>
+          <q-input
+            outlined
+            v-model="province"
+            type="text"
+            autofocus
+            label="Province"
+          />
+          <p></p>
+          <q-input
+            outlined
             v-model="description"
             type="textarea"
             autofocus
-            label="Address"
+            label="Description"
           />
           <p></p>
           <q-input
@@ -93,6 +125,10 @@ export default {
       description: "",
       space_size: "",
       weekly_rate: "",
+      street: "",
+      city: "",
+      zipcode: "",
+      province: "",
     };
   },
 
@@ -119,6 +155,10 @@ export default {
           description: this.description,
           space_size: this.space_size,
           weekly_rate: this.weekly_rate,
+          street: this.street,
+          city: this.city,
+          zipcode: this.zipcode,
+          province: this.province,
         })
           .then((response) => {
             resolve(response);

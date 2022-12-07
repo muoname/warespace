@@ -17,6 +17,10 @@ def update
     @user.email = params[:email]
     @user.password = params[:password]
     @user.address = params[:address]
+    @user.street = params[:street]
+    @user.city = params[:city]
+    @user.zipcode = params[:zipcode]
+    @user.province = params[:province]
     if @user.save
         render json: @user
     else

@@ -5,6 +5,9 @@ class User < ApplicationRecord
 
   after_validation :geocode, if: :address_changed?
 
+  def address 
+    "#{street} #{city} #{zipcode} #{province}"
+  end
 
     private
 
