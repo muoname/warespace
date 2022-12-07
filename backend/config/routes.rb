@@ -8,14 +8,16 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get '/search/myspaces', to: 'spaces#myspaces'
-      get '/search/myrents', to: 'rents#myrents'
+      
       resources :spaces
       resources :pages
       resources :spacecategories
       resources :rents
       # get 'pages/home/:address', to: 'pages#index'
       get '/maps/nearby/:address', to: 'maps#index'
+
+      get '/search/myspaces', to: 'spaces#myspaces'
+      get '/search/myrents', to: 'rents#myrents'
       
     end
   end

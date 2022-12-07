@@ -3,6 +3,7 @@ class Api::V1::SpacesController < ApplicationController
 
   def myspaces     
     @spaces = Space.where('user_id LIKE ?', params[:id])
+    
     render json: @spaces
   end
 
