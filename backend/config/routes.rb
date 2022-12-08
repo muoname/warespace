@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      
       resources :spaces
       resources :pages
       resources :spacecategories
@@ -16,9 +15,10 @@ Rails.application.routes.draw do
       # get 'pages/home/:address', to: 'pages#index'
       get '/maps/nearby/:address', to: 'maps#index'
 
-      get '/search/myspaces', to: 'spaces#myspaces'
-      get '/search/myrents', to: 'rents#myrents'
+      get '/myspaces', to: 'spaces#myspaces'
+      get '/myrents', to: 'rents#myrents'
       
+      get '/search', to: 'spaces#search'
     end
   end
   patch 'users/switch/:id', to: 'users#switch'
