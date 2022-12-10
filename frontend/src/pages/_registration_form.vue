@@ -43,11 +43,12 @@ export default {
         const email = ref(null)
         const password = ref(null)
         const is_renter = ref(true)
-        const accept = ref(false)
         const street = ref(null)
         const city = ref(null)
         const zipcode = ref(null)
         const province = ref(null)
+        const accept = ref(false)
+        const address = ref(null)
 
         return {
             first_name,
@@ -57,10 +58,7 @@ export default {
             password,
             accept,
             is_renter,
-            street,
-            zipcode,
-            city,
-            province
+            address,
         }
     },
     methods: {
