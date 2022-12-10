@@ -1,6 +1,18 @@
 class Api::V1::SpacesController < ApplicationController
   before_action :set_space, only: %i[ show edit update destroy ]
 
+  def search
+    @spaces = Space.where(location: params[:search_string]).or(Space.where(title: params[:search_string]))
+
+    render json: @spaces
+  end
+
+  def myspaces     
+    @spaces = Space.where('user_id LIKE ?', params[:search_id])
+    
+    render json: @spaces
+  end
+
   # GET /spaces or /spaces.json
   def index
     @spaces = Space.all
@@ -35,14 +47,26 @@ class Api::V1::SpacesController < ApplicationController
 
   # PATCH/PUT /spaces/1 or /spaces/1.json
   def update
-    respond_to do |format|
-      if @space.update(space_params)
-        format.html { redirect_to space_url(@space), notice: "Space was successfully updated." }
-        format.json { render :show, status: :ok, location: @space }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @space.errors, status: :unprocessable_entity }
-      end
+    @space = Space.find(params[:id])
+    @space.spacecategory_id = params[:spacecategory_id]
+    @space.title = params[:title]
+    @space.location = params[:location]
+    @space.description = params[:description]
+    @space.space_size = params[:space_size]
+    @space.weekly_rate = params[:weekly_rate]
+    @space.longitude = params[:longitude]
+    @space.latitude = params[:latitude]
+    @space.space_policies = params[:space_policies]
+    @space.street = params[:street]
+    @space.city = params[:city]
+    @space.zipcode = params[:zipcode]
+    @space.province = params[:province]
+    @space.image = params[:image]
+
+    if @space.save
+      render json: @space
+    else
+      render json: @space.errors
     end
   end
 

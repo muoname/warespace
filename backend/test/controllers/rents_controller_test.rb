@@ -6,43 +6,33 @@ class RentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get rents_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_rent_url
+    get rents_url, as: :json
     assert_response :success
   end
 
   test "should create rent" do
     assert_difference("Rent.count") do
-      post rents_url, params: { rent: { duration: @rent.duration, space_id: @rent.space_id, user_id: @rent.user_id } }
+      post rents_url, params: { rent: { duration: @rent.duration, space_id: @rent.space_id, user_id: @rent.user_id } }, as: :json
     end
 
-    assert_redirected_to rent_url(Rent.last)
+    assert_response :created
   end
 
   test "should show rent" do
-    get rent_url(@rent)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_rent_url(@rent)
+    get rent_url(@rent), as: :json
     assert_response :success
   end
 
   test "should update rent" do
-    patch rent_url(@rent), params: { rent: { duration: @rent.duration, space_id: @rent.space_id, user_id: @rent.user_id } }
-    assert_redirected_to rent_url(@rent)
+    patch rent_url(@rent), params: { rent: { duration: @rent.duration, space_id: @rent.space_id, user_id: @rent.user_id } }, as: :json
+    assert_response :success
   end
 
   test "should destroy rent" do
     assert_difference("Rent.count", -1) do
-      delete rent_url(@rent)
+      delete rent_url(@rent), as: :json
     end
 
-    assert_redirected_to rents_url
+    assert_response :no_content
   end
 end

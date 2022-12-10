@@ -14,7 +14,11 @@ Rails.application.routes.draw do
       resources :rents
       # get 'pages/home/:address', to: 'pages#index'
       get '/maps/nearby/:address', to: 'maps#index'
+
+      get '/myspaces', to: 'spaces#myspaces'
+      get '/myrents', to: 'rents#myrents'
       
+      get '/search', to: 'spaces#search'
     end
   end
   patch 'users/switch/:id', to: 'users#switch'
