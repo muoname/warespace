@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'users#show'
  
   root 'application#index'
-  match "*path", to: "application#index", format: false, via: :get
+  # match "*path", to: "application#index", format: false, via: :get
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
