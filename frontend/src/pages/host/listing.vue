@@ -19,7 +19,8 @@
           class="col-3 q-pa-sm"
         >
           <q-card v-ripple class="">
-            <img src="https://cdn.quasar.dev/img/mountains.jpg" />
+            
+            <q-img :src="space.image.url" spinner-color="white" />
 
             <q-card-section>
               <div class="text-h6">{{ space.title }}</div>
@@ -63,6 +64,7 @@ export default {
   created() {
     axios.get("http://localhost:3000/api/v1/spaces").then((response) => {
       this.spaces = response.data;
+      console.log(this.spaces[0].image.url)
     });
   },
   setup() {

@@ -4,8 +4,6 @@
             :rules="[val => val && val.length > 0 || 'Enter your First Name']" />
         <q-input filled v-model="last_name" label="Last Name" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Last Name']" />
-        <q-input filled type="text-area" v-model="address" label="Address" lazy-rules
-            :rules="[val => val && val.length > 0 || 'Enter your Address']" />
         <q-input filled type="text-area" v-model="street" label="Street" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter your Street']" />
         <q-input filled type="text-area" v-model="city" label="City" lazy-rules
@@ -59,7 +57,6 @@ export default {
         const phone_number = ref(null)
         const email = ref(null)
         const password = ref(null)
-        const address = ref(null)
         const street = ref(null)
         const city = ref(null)
         const zipcode = ref(null)
@@ -73,7 +70,6 @@ export default {
             email,
             password,
             accept,
-            address,
             street,
             zipcode,
             city,
@@ -92,7 +88,6 @@ export default {
                 phone_number: this.phone_number,
                 email: this.email,
                 password: this.password,
-                address: this.address,
                 street: this.street,
                 city: this.city,
                 zipcode: this.zipcode,

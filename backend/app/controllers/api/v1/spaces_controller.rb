@@ -37,6 +37,7 @@ class Api::V1::SpacesController < ApplicationController
 
   # POST /spaces or /spaces.json
   def create
+    puts params
     @space = Space.new(space_params)
       if @space.save
         render json: @space
@@ -61,7 +62,7 @@ class Api::V1::SpacesController < ApplicationController
     @space.city = params[:city]
     @space.zipcode = params[:zipcode]
     @space.province = params[:province]
-    @space.image = params[:image]
+    
 
     if @space.save
       render json: @space
@@ -88,6 +89,6 @@ class Api::V1::SpacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def space_params
-      params.require(:space).permit(:user_id, :spacecategory_id, :title, :location, :description, :space_size, :weekly_rate, :longitude, :latitude, :space_policies, :image, :street, :city, :zipcode, :province, pictures: [] )
+      params.permit(:user_id, :spacecategory_id, :title, :location, :description, :space_size, :weekly_rate, :longitude, :latitude, :space_policies, :image, :street, :city, :zipcode, :province, pictures: [] )
     end
 end
