@@ -48,7 +48,6 @@ export default {
         const zipcode = ref(null)
         const province = ref(null)
         const accept = ref(false)
-        const address = ref(null)
 
         return {
             first_name,
@@ -58,7 +57,10 @@ export default {
             password,
             accept,
             is_renter,
-            address,
+            street,
+            zipcode,
+            city,
+            province
         }
     },
     methods: {
