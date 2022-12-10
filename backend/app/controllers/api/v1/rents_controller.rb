@@ -26,7 +26,7 @@ class Api::V1::RentsController < ApplicationController
     @rent = Rent.new(rent_params)
 
     if @rent.save
-      render :show
+      render json: @rent
     else
       render json: @rent.errors, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class Api::V1::RentsController < ApplicationController
   # PATCH/PUT /rents/1.json
   def update
     if @rent.update(rent_params)
-      render :show
+      render json: @rent
     else
       render json: @rent.errors, status: :unprocessable_entity
     end

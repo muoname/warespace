@@ -83,7 +83,7 @@ export default {
                     },
                 };
                 this.registerUser(data);
-                
+                this.$router.push({name: "home_path"})
             }
             
         },

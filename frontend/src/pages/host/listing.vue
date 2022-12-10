@@ -27,12 +27,15 @@
               <div class="text-subtitle2">{{ space.user_id }}</div>
             </q-card-section>
 
-            <q-card-section class="q-pt-none">
-              <router-link
-                :to="{ name: 'host_show_path', params: { id: space.id } }"
-                ><q-btn flat rounded color="primary" label="Show"
-              /></router-link>
-            </q-card-section>
+            <div class="row flex-center">
+              <div class="col" align="center">
+                <q-card-section class="q-pt-none justify-center">
+                  <router-link :to="{ name: 'host_show_path', params: { id: space.id } }"><q-btn flat rounded color="primary"
+                      label="Show" /></router-link>
+                </q-card-section>
+              </div>
+            </div>
+            
           </q-card>
         </div>
       </div>

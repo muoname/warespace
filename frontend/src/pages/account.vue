@@ -31,9 +31,47 @@
                 </p>
 
             </div>
-            <div class="col-6">
-
-                Listing History
+            <div v-if="isRenter" class="col-6">
+                <p class="text-weight-bold q-pl-sm">My Rents</p>
+                <div class="row">
+                    <div v-for="listing in listings" v-bind:key="listing.id" class="col-5 q-pa-sm">
+                        <q-card v-ripple class="">
+                    
+                            <q-img :src="listing.image.url" spinner-color="white" />
+                    
+                            <q-card-section>
+                                <div class="text-h6">{{ listing.title }}</div>
+                                <div class="text-subtitle2">{{ listing.user_id }}</div>
+                            </q-card-section>
+                    
+                            <q-card-section class="q-pt-none">
+                                <router-link :to="{ name: 'host_show_path', params: { id: listing.id } }"><q-btn flat rounded
+                                        color="primary" label="Show" /></router-link>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="col-6">
+                <p class="text-weight-bold q-pl-sm">My Listings</p>
+                <div class="row">
+                    <div v-for="listing in listings" v-bind:key="listing.id" class="col-5 q-pa-sm">
+                        <q-card v-ripple class="">
+                    
+                            <q-img :src="listing.image.url" spinner-color="white" />
+                    
+                            <q-card-section>
+                                <div class="text-h6">{{ listing.title }}</div>
+                                <div class="text-subtitle2">{{ listing.user_id }}</div>
+                            </q-card-section>
+                    
+                            <q-card-section class="q-pt-none">
+                                <router-link :to="{ name: 'host_show_path', params: { id: listing.id } }"><q-btn flat rounded color="primary"
+                                        label="Show" /></router-link>
+                            </q-card-section>
+                        </q-card>
+                    </div>
+                </div>
             </div>
         </div>
     </template>
@@ -62,6 +100,26 @@ export default {
             "getUserPhoneNumber",
         ]),
     },
+    created() {
+        
+        axios.post(`http://localhost:3000/api/v1/myspaces`, {
+            search_id: this.getUserID
+        }).then((response) => {
+            this.listings = response.data
+        })
+
+        axios.post(`http://localhost:3000/api/v1/myrents`, {
+            search_id: this.getUserID
+        }).then((response) => {
+            this.rents = response.data
+        })
+    },
+    data(){
+        return{
+            listings: [],
+            rents: []
+        }
+    },
     setup() {
 
     },
@@ -74,7 +132,7 @@ export default {
                 id: this.getUserID,
                 is_renter: !this.isRenter
             }).then((response) => {
-                this.$router.go()
+                this.$router.push({name: "home_path"})
 
             })
         }

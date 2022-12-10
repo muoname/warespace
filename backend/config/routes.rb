@@ -15,8 +15,8 @@ Rails.application.routes.draw do
       # get 'pages/home/:address', to: 'pages#index'
       get '/maps/nearby/:address', to: 'maps#index'
 
-      get '/myspaces', to: 'spaces#myspaces'
-      get '/myrents', to: 'rents#myrents'
+      post '/myspaces', to: 'spaces#myspaces'
+      post '/myrents', to: 'rents#myrents'
       
       get '/search', to: 'spaces#search'
     end
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   patch 'users/:id', to: 'users#update'
   get 'users/:id', to: 'users#show'
  
-  root 'application#index'
+  # root 'application#index'
   # match "*path", to: "application#index", format: false, via: :get
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
