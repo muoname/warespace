@@ -4,9 +4,9 @@
             <GMapMarker v-bind:key="space.id" v-for="space in nearby"
                 :position="{ lat: space.latitude, lng: space.longitude }" @click="openMarker(space.id)">
                 <GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)" :opened="openedMarkerID === space.id" 
-                options="{
-                    maxWidth: 200,
-                    maxHeight: 200,
+                :options="{
+                    width: 200,
+                    height: 200,
                 }">
                     <q-card v-ripple class="">
                     
