@@ -25,12 +25,13 @@ class Api::V1::SpacesController < ApplicationController
   def index
     @spaces = Space.all
 
-    render json: @spaces
-  end
-
+    render json: @spaces.to_json(include: { user: { only: [:first_name, :last_name, :phone_number, :address] } })
+  end 
   # GET /spaces/1 or /spaces/1.json
   def show
-    render json: @space
+
+    render json: @space.to_json(include: { user: { only: [:first_name, :last_name, :phone_number, :address] } })
+
   end
 
   # GET /spaces/new
