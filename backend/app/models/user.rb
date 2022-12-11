@@ -6,7 +6,6 @@ class User < ApplicationRecord
   has_many :spaces
   has_many :rents
 
-  # after_validation :geocode, if: :address_changed?
 
   def address 
     "#{street} #{city} #{zipcode} #{province}"
