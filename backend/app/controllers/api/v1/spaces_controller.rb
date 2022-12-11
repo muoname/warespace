@@ -7,9 +7,17 @@ class Api::V1::SpacesController < ApplicationController
     render json: @spaces
   end
 
-  def myspaces     
+  def myspaces    
+    puts params
+    puts "test"
     @spaces = Space.where('user_id LIKE ?', params[:search_id])
     
+    render json: @spaces
+  end
+
+  def myrents
+    @spaces = Space.joins(:rents).where('rents.user_id LIKE ?', params[:search_id])
+
     render json: @spaces
   end
 

@@ -1,11 +1,7 @@
 class Api::V1::RentsController < ApplicationController
   before_action :set_rent, only: %i[ show update destroy ]
 
-  def myrents     
-    @rents = Rent.where('user_id LIKE ?', params[:search_id])
 
-    render json: @rents
-  end
 
   # GET /rents
   # GET /rents.json
@@ -29,7 +25,7 @@ class Api::V1::RentsController < ApplicationController
     @rent = Rent.new(rent_params)
 
     if @rent.save
-      render :show
+      render json: @rent
     else
       render json: @rent.errors, status: :unprocessable_entity
     end
@@ -39,7 +35,7 @@ class Api::V1::RentsController < ApplicationController
   # PATCH/PUT /rents/1.json
   def update
     if @rent.update(rent_params)
-      render :show
+      render json: @rent
     else
       render json: @rent.errors, status: :unprocessable_entity
     end

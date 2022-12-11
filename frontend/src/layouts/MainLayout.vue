@@ -35,7 +35,7 @@
             outlined
             rounded
             dense
-            v-model="text"
+            v-model="search_string"
             label="Search"
           >
             <template v-slot:append>
@@ -158,7 +158,7 @@
                 outlined
                 rounded
                 dense
-                v-model="text"
+                v-model="email_sub"
                 label="Email Address"
               >
                 <template v-slot:append>
@@ -219,6 +219,8 @@ export default {
     return {
       loginEmail: "",
       loginPassword: "",
+      search_string: ref(null),
+      email_sub: ref(null)
     };
   },
 
