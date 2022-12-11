@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
       post '/myspaces', to: 'spaces#myspaces'
       get '/myrents', to: 'spaces#myrents'
+      get '/show_rents', to: 'rents#show_rents'
       
       get '/search', to: 'spaces#search'
     end
