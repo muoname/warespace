@@ -3,20 +3,22 @@
         <div class="col-5 q-pa-lg" align="center">
             <q-img
                 
-                :src="listing.image.url"
+                :src="listing"
                 style="width: 400px; height: auto "></q-img>
         </div>
         
         <div class="col-5 q-pl-sm q-pt-lg q-pb-lg q-pr-lg"> 
             <p class="text-h4 text-bold"> 
                 {{ listing.title }}</p> 
-            <p class="text-h6"> {{ listing.user_id }}</p> 
+            <p class="text-h6"> {{ listing.user.first_name }} {{ listing.user.last_name }} </p> 
             <p class="text-body1"> <b>Address:</b> {{ listing.street}}, {{listing.city}}, {{listing.province}}, {{listing.zipcode}}</p> 
+            <p class="text-body1"> <b>Contact Number:</b> {{ listing.user.phone_number}} </p> 
+            <p class="text-body1"> <b>Host Address:</b> {{ listing.user.address}} </p> 
             <p class="text-body1"> {{ listing.description }}</p> 
 
             <div v-if="isRenter" class="vertical-bottom self-end">
                 <q-form @submit="submitRent">
-                    <q-date v-model="duration" minimal> </q-date>
+                    <q-date v-model="duration" minimal range> </q-date>
                     <p></p>
                     <q-btn label="RENT" color="primary" type="submit"></q-btn>
                 </q-form>
@@ -47,8 +49,6 @@ export default {
 
         axios.get(`http://localhost:3000/api/v1/spaces/${this.$route.params.id}`).then((response) => {
             this.listing = response.data
-            console.log(response.data)
-            console.log(this.$route.params.id)
         })
     },
     data() {
@@ -59,9 +59,11 @@ export default {
     },
     methods: {
         submitRent(){
+            console.log(this.duration)
             axios.post("http://localhost:3000/api/v1/rents/", {
                 user_id: this.getUserID,
-                duration: this.duration,
+                start_date: this.duration.from,
+                end_date: this.duration.to,
                 space_id: this.$route.params.id
             })
         }

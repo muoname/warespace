@@ -37,7 +37,7 @@
                     <div v-for="listing in listings" v-bind:key="listing.id" class="col-5 q-pa-sm">
                         <q-card v-ripple class="">
                     
-                            <q-img :src="listing.image.url" spinner-color="white" />
+                            <q-img :src="listing" spinner-color="white" />
                     
                             <q-card-section>
                                 <div class="text-h6">{{ listing.title }}</div>
@@ -58,7 +58,7 @@
                     <div v-for="listing in listings" v-bind:key="listing.id" class="col-5 q-pa-sm">
                         <q-card v-ripple class="">
                     
-                            <q-img :src="listing.image.url" spinner-color="white" />
+                            <q-img :src="listing" spinner-color="white" />
                     
                             <q-card-section>
                                 <div class="text-h6">{{ listing.title }}</div>
@@ -102,17 +102,22 @@ export default {
     },
     created() {
         
-        axios.post(`http://localhost:3000/api/v1/myspaces`, {
-            search_id: this.getUserID
-        }).then((response) => {
-            this.listings = response.data
-        })
+        if(this.isRenter) {
+            axios.post(`http://localhost:3000/api/v1/myspaces`, {
+                search_id: this.getUserID
+            }).then((response) => {
+                this.listings = response.data
+            })
+        }
+        else {
+            axios.post(`http://localhost:3000/api/v1/myrents`, {
+                search_id: this.getUserID
+            }).then((response) => {
+                this.rents = response.data
+            })
+        }
 
-        axios.post(`http://localhost:3000/api/v1/myrents`, {
-            search_id: this.getUserID
-        }).then((response) => {
-            this.rents = response.data
-        })
+        
     },
     data(){
         return{
@@ -132,8 +137,8 @@ export default {
                 id: this.getUserID,
                 is_renter: !this.isRenter
             }).then((response) => {
-                this.$router.push({name: "home_path"})
-
+                this.$router.go()
+                this.$router.push({ name: "home_path" })
             })
         }
 

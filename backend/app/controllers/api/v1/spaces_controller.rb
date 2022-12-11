@@ -46,7 +46,6 @@ class Api::V1::SpacesController < ApplicationController
 
   # POST /spaces or /spaces.json
   def create
-    puts params
     @space = Space.new(space_params)
       if @space.save
         render json: @space

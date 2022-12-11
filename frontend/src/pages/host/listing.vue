@@ -20,11 +20,11 @@
         >
           <q-card v-ripple class="">
             
-            <q-img :src="space.image.url" spinner-color="white" />
+            <q-img :src="space" spinner-color="white" />
 
             <q-card-section>
               <div class="text-h6">{{ space.title }}</div>
-              <div class="text-subtitle2">{{ space.user_id }}</div>
+              <div class="text-subtitle2">{{ space.user.first_name }} {{ space.user.last_name }}</div>
             </q-card-section>
 
             <div class="row flex-center">
