@@ -1,11 +1,7 @@
 class Api::V1::RentsController < ApplicationController
   before_action :set_rent, only: %i[ show update destroy ]
 
-  def myrents     
-    @rents = Rent.where('user_id LIKE ?', params[:search_id])
 
-    render json: @rents
-  end
 
   # GET /rents
   # GET /rents.json

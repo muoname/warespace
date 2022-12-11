@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get '/maps/nearby/:address', to: 'maps#index'
 
       post '/myspaces', to: 'spaces#myspaces'
-      post '/myrents', to: 'rents#myrents'
+      get '/myrents', to: 'spaces#myrents'
       
       get '/search', to: 'spaces#search'
     end

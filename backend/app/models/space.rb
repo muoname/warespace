@@ -1,4 +1,7 @@
 class Space < ApplicationRecord
+    has_many :rents
+    belongs_to :user
+    
     before_save :coord_calculator
     geocoded_by :address
     # after_validation :geocode, if: :address_changed?

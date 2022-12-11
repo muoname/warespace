@@ -15,6 +15,12 @@ class Api::V1::SpacesController < ApplicationController
     render json: @spaces
   end
 
+  def myrents
+    @spaces = Space.joins(:rents).where('rents.user_id LIKE ?', params[:search_id])
+
+    render json: @spaces
+  end
+
   # GET /spaces or /spaces.json
   def index
     @spaces = Space.all
