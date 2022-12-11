@@ -1,7 +1,6 @@
 class Space < ApplicationRecord
     before_save :coord_calculator
     geocoded_by :address
-    # after_validation :geocode, if: :address_changed?
     
     def address 
         "#{street} #{city} #{zipcode} #{province}"
@@ -18,6 +17,7 @@ class Space < ApplicationRecord
         
     belongs_to :user
     belongs_to :spacecategory
+
 
     # one attached image
     has_one_attached :image
@@ -49,5 +49,6 @@ class Space < ApplicationRecord
         addr = Geocoder.search(location)
         addr.first.coordinates
     end
+
 
 end

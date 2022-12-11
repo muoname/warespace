@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   geocoded_by :address
 
-  after_validation :geocode, if: :address_changed?
+  # after_validation :geocode, if: :address_changed?
 
   def address 
     "#{street} #{city} #{zipcode} #{province}"
