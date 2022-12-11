@@ -1,8 +1,6 @@
 class Api::V1::RentsController < ApplicationController
   before_action :set_rent, only: %i[ show update destroy ]
 
-
-
   # GET /rents
   # GET /rents.json
   def index
@@ -52,6 +50,6 @@ class Api::V1::RentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rent_params
-      params.require(:rent).permit(:user_id, :space_id, :duration)
+      params.require(:rent).permit(:user_id, :space_id, :start_date, :end_date)
     end
 end
