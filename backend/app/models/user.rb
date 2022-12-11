@@ -3,6 +3,9 @@ class User < ApplicationRecord
 
   geocoded_by :address
 
+  has_many :spaces
+  has_many :rents
+
   # after_validation :geocode, if: :address_changed?
 
   def address 
@@ -16,8 +19,7 @@ class User < ApplicationRecord
             self.latitude = results.first.coordinates[0]
             self.longitude = results.first.coordinates[1]
         end
-  
-  has_many :spaces
+
 
   # validates :first_name, presence: true
   # validates :last_name, presence: true

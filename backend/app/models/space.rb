@@ -16,6 +16,7 @@ class Space < ApplicationRecord
    
         
     belongs_to :user
+    belongs_to :rents
     belongs_to :spacecategory
 
 
