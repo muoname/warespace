@@ -25,13 +25,13 @@ class Api::V1::SpacesController < ApplicationController
   def index
     @spaces = Space.all
 
-    render json: @spaces.to_json(include: { user: { only: [:first_name, :last_name, :phone_number, :address] } })
+    render json: @spaces
   end 
   # GET /spaces/1 or /spaces/1.json
   def show
-
-    render json: @space.to_json(include: { user: { only: [:first_name, :last_name, :phone_number, :address] } })
-
+    @space = Space.find(params[:id])
+    render json: @space, 
+    each_serializer: Api::V1::UserSerializer
   end
 
   # GET /spaces/new
@@ -46,7 +46,7 @@ class Api::V1::SpacesController < ApplicationController
 
   # POST /spaces or /spaces.json
   def create
-    puts params
+    
     @space = Space.new(space_params)
       if @space.save
         render json: @space

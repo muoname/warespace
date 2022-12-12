@@ -10,7 +10,7 @@
         <div class="col-5 q-pl-sm q-pt-lg q-pb-lg q-pr-lg"> 
             <p class="text-h4 text-bold"> 
                 {{ listing.title }}</p> 
-            <p class="text-h6"> {{ listing.user_id }}</p> 
+            <p class="text-h6"> {{ listing.user.first_name }}</p> 
             <p class="text-body1"> <b>Address:</b> {{ listing.street}}, {{listing.city}}, {{listing.province}}, {{listing.zipcode}}</p> 
             <p class="text-body1"> {{ listing.description }}</p> 
 
