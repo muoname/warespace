@@ -13,14 +13,14 @@ class Api::V1::RentsController < ApplicationController
 
     @rents = Rent.all
 
-    render json: @rents.to_json(include: { user: { only: [:first_name, :last_name, :phone_number, :address] }, })
+    render json: @rents
 
   end
 
   # GET /rents/1
   # GET /rents/1.json
   def show
-    render json: @rent.to_json(include: { user: { only: [:first_name, :last_name, :phone_number, :address] } })
+    render json: @rent
   end
 
   # POST /rents
