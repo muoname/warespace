@@ -2,7 +2,12 @@ class Api::V1::SpacesController < ApplicationController
   before_action :set_space, only: %i[ show edit update destroy ]
 
   def recommendation
-    @spaces = Space.last(6)
+    @spaces = Space.last(3)
+
+    render json: @spaces
+  end
+  def recommendation2
+    @spaces = Space.limit(3)
 
     render json: @spaces
   end

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get '/search', to: 'spaces#search'
 
       get 'recommendation', to: 'spaces#recommendation'
+      get 'recommendation2', to: 'spaces#recommendation2'
+
     end
   end
   patch 'users/switch/:id', to: 'users#switch'

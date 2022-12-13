@@ -3,15 +3,14 @@
     <Space_Form v-model="prompt" />
     <delete_success v-model="prompt_delete" />
     <div class="row">
-      <div class="col-4 q-pa-sm"></div>
-      <div class="col-8 q-pa-sm">
+      <div class="col q-pa-sm">
         <div class="row flex-center float-right q-pr-lg q-pt-md">
           <q-btn v-if="(isLoggedIn && !isRenter)" rounded color="primary" icon="fa-solid fa-plus" label="New Listing"
             @click="prompt = true" />
         </div>
         <div class="row inline q-pb-xl q-pa-md">
           <div v-for="space in spaces" v-bind:key="space.id" class="col-3 q-pa-sm">
-            <q-card v-ripple class="">
+            <q-card class="">
     
               <q-img :src="space.image.url" spinner-color="white" />
     

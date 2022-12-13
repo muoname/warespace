@@ -4,7 +4,8 @@
             <q-img
                 
                 :src="listing.image.url"
-                style="width: 400px; height: auto "></q-img>
+                style="max-width: 1000px; height: auto ">
+            </q-img>
         </div>
         
         <div class="col-5 q-pl-sm q-pt-lg q-pb-lg q-pr-lg"> 
@@ -34,9 +35,30 @@
                 </q-form>
                 
             </div>
+            <div v-else>
+                <div class="q-pt-sm q-pb-sm">
+                    <delete_fail v-model="delete_fail" />
+                    <delete_success v-model="delete_success" />
+                    <p class="text-h6"> Rent History:</p>
+                    <div v-for="rent in rents" v-bind:key="rent.id" class="q-pb-sm">
+                        <q-card>
+                            <q-card-section>
+                                <div class="text-body1"><b>Name of Renter:</b> {{ rent.user.first_name }} {{ rent.user.last_name}}</div>
+                                <div class="text-body1"><b>Start Date</b> {{ rent.start_date }}</div>
+                                <div class="text-body1"><b>End Date</b> {{ rent.end_date }}</div>
+                            </q-card-section>
+                            <q-card-actions align="center" class="text-primary" v-if="rent.user_id == getUserID">
+                                <q-btn color="negative" @click="deleteRent(rent.id)" label="Delete Rent"/>
+                            </q-card-actions>
+                        </q-card>
+                    </div>
+                </div>
+                <q-separator></q-separator>
+            </div>
             <div v-if="getUserID == listing.user_id" class="q-pt-md">
                 <q-btn class="" label="Delete Listing" color="negative" @click="onDelete"></q-btn>
             </div>
+            
         </div>
     </div>
 </template>
@@ -47,10 +69,14 @@ import "../../store";
 import { mapActions, mapGetters } from "vuex";
 import rent_success from "../shared/_rent_sucess.vue"
 import rent_fail from "../shared/_rent_fail.vue"
+import delete_success from "../shared/_delete_sucess.vue"
+import delete_fail from "../shared/_delete_fail.vue"
 export default {
     components: {
         rent_success,
         rent_fail,
+        delete_success,
+        delete_fail,
     },
     computed: {
         ...mapGetters([
@@ -84,7 +110,6 @@ export default {
     },
     methods: {
         submitRent(){
-            console.log(this.duration)
             axios.post("http://localhost:3000/api/v1/rents/", {
                 user_id: this.getUserID,
                 start_date: this.duration.from,
@@ -98,7 +123,7 @@ export default {
             })
         },
         onDelete(){
-            console.log(this.duration)
+            
             axios.delete(`http://localhost:3000/api/v1/spaces/${(this.listing.id)}`, {
             }).then((response) => {
                 this.$router.push({name: "listing_path", props: {prompt_delete: true} })
@@ -107,11 +132,22 @@ export default {
                 this.prompt_fail = true
             })
         },
+        deleteRent(id){
+            axios.delete(`http://localhost:3000/api/v1/rents/${id}`, {
+            }).then((response) => {
+                this.delete_success = true
+            }).catch((error) =>{
+                console.log(error)
+                this.delete_fail = true
+            })
+        },
     },
     setup() {
         return {
             prompt_fail: ref(false),
             prompt_success: ref(false),
+            delete_fail: ref(false),
+            delete_success: ref(false),
         };
     },
 }
