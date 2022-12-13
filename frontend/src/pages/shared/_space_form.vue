@@ -1,5 +1,6 @@
 <template>
   <q-dialog>
+    <listing_fail v-model="prompt_fail"></listing_fail>
     <q-card style="min-width: 350px">
       <q-card-section>
         <div class="text-h6">Login</div>
@@ -88,7 +89,7 @@
           </q-file>
         </q-card-section>
         <q-card-actions align="right" class="text-primary">
-            <q-btn color="primary" type="submit" label="Post Listing" v-close-popup />
+            <q-btn color="primary" type="submit" label="Post Listing"/>
 
           <q-btn flat label="Cancel" v-close-popup />
           
@@ -104,8 +105,11 @@ import { ref } from "vue";
 import axios from "axios";
 import "../../store";
 import { mapActions, mapGetters } from "vuex";
-
+import listing_fail from "./_listing_fail.vue"
 export default {
+  components: {
+    listing_fail,
+  },
   computed: {
     ...mapGetters([
       "getUserID",,
@@ -166,18 +170,23 @@ export default {
       new Promise((resolve, reject) => {
         axios.post("http://localhost:3000/api/v1/spaces", formData)
           .then((response) => {
-            resolve(response);
             console.log(response.data)
+            this.$router.push({ name: 'host_show_path', params: { id: response.data.id } })
+            resolve(response);
+            
           })
           .catch((error) => {
             reject(error);
+            this.prompt_fail = true
           });
       });
     },
   },
 
   setup() {
-    return {};
+    return {
+      prompt_fail: ref(false), 
+    };
   },
 };
 </script>

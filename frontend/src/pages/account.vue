@@ -1,5 +1,7 @@
 <template>
     <template v-if="isLoggedIn">
+        
+        
         <div>
             
         </div>
@@ -7,7 +9,7 @@
             <div class="col-3 text-bold">
                 Account <br>
                 <q-btn flat color="black" icon="fa-solid fa-right-from-bracket" label="Logout" dense
-                    @click="logoutUser" /> <br>
+                    @click="logoutUser"/> <br>
                 <q-btn v-if="isRenter" flat color="black" icon="fa-solid fa-repeat" label="Switch to Host" dense
                     @click="switchUserType" />
                 <q-btn v-else flat color="black" icon="fa-solid fa-repeat" label="Switch to Renter" dense
@@ -37,17 +39,24 @@
                     <div v-for="listing in listings" v-bind:key="listing.id" class="col-5 q-pa-sm">
                         <q-card v-ripple class="">
                     
-                            <q-img :src="listing" spinner-color="white" />
+                            <q-img :src="listing.image.url" spinner-color="white" />
                     
                             <q-card-section>
                                 <div class="text-h6">{{ listing.title }}</div>
-                                <div class="text-subtitle2">{{ listing.user_id }}</div>
+                                <div class="text-subtitle2">{{ listing.user.first_name }} {{ listing.user.last_name }}</div>
+                                <div class="text-body2">{{ listing.street }} {{ listing.city }} {{ listing.province }} {{
+                                    listing.zipcode }}</div>
+                                <div class="text-subtitle2"> Php: {{ listing.weekly_rate }}</div>
                             </q-card-section>
                     
-                            <q-card-section class="q-pt-none">
-                                <router-link :to="{ name: 'host_show_path', params: { id: listing.id } }"><q-btn flat rounded
-                                        color="primary" label="Show" /></router-link>
-                            </q-card-section>
+                            <div class="row flex-center">
+                                <div class="col" align="center">
+                                    <q-card-section class="q-pt-none justify-center">
+                                        <router-link :to="{ name: 'host_show_path', params: { id: listing.id } }"><q-btn flat rounded
+                                                color="primary" label="Show" /></router-link>
+                                    </q-card-section>
+                                </div>
+                            </div>
                         </q-card>
                     </div>
                 </div>
@@ -57,18 +66,25 @@
                 <div class="row">
                     <div v-for="listing in listings" v-bind:key="listing.id" class="col-5 q-pa-sm">
                         <q-card v-ripple class="">
-                    
-                            <q-img :src="listing" spinner-color="white" />
-                    
+                
+                            <q-img :src="listing.image.url" spinner-color="white" />
+                
                             <q-card-section>
                                 <div class="text-h6">{{ listing.title }}</div>
-                                <div class="text-subtitle2">{{ listing.user_id }}</div>
+                                <div class="text-subtitle2">{{ listing.user.first_name }} {{ listing.user.last_name }}</div>
+                                <div class="text-body2">{{ listing.street }} {{ listing.city }} {{ listing.province }} {{
+                                    listing.zipcode }}</div>
+                                <div class="text-subtitle2"> Php: {{ listing.weekly_rate }}</div>
                             </q-card-section>
-                    
-                            <q-card-section class="q-pt-none">
-                                <router-link :to="{ name: 'host_show_path', params: { id: listing.id } }"><q-btn flat rounded color="primary"
-                                        label="Show" /></router-link>
-                            </q-card-section>
+                
+                            <div class="row flex-center">
+                                <div class="col" align="center">
+                                    <q-card-section class="q-pt-none justify-center">
+                                        <router-link :to="{ name: 'host_show_path', params: { id: listing.id } }"><q-btn flat rounded
+                                                color="primary" label="Show" /></router-link>
+                                    </q-card-section>
+                                </div>
+                            </div>
                         </q-card>
                     </div>
                 </div>
@@ -76,9 +92,19 @@
         </div>
     </template>
     <template v-else>
-        <div>
-            please login
-        </div>
+            <q-card style="min-width: 350px">
+                <q-card-section>
+                    <div class="text-h6" align="center">Status</div>
+                </q-card-section>
+                <div class="q-pa-lg">
+                    <q-card class="bg-negative q-pa-lg" align="center">
+                        <p class="text-white" style="display:inline"> Please Login to Continue in this Page </p>
+                    </q-card>
+                </div>
+                <q-card-actions align="center" class="text-primary">
+                    <q-btn flat label="OK" @click="push" v-close-popup />
+                </q-card-actions>
+            </q-card>
     </template>
 
 </template>
@@ -88,6 +114,11 @@ import "../store";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+
+    setup() {
+        return {
+        };
+    },
     computed: {
         ...mapGetters([
             "getAuthToken",
@@ -103,17 +134,17 @@ export default {
     created() {
         
         if(this.isRenter) {
-            axios.post(`http://localhost:3000/api/v1/myspaces`, {
+            axios.post(`http://localhost:3000/api/v1/myrents`, {
                 search_id: this.getUserID
             }).then((response) => {
                 this.listings = response.data
             })
         }
         else {
-            axios.post(`http://localhost:3000/api/v1/myrents`, {
+            axios.post(`http://localhost:3000/api/v1/myspaces`, {
                 search_id: this.getUserID
             }).then((response) => {
-                this.rents = response.data
+                this.listings = response.data
             })
         }
 
@@ -122,12 +153,9 @@ export default {
     data(){
         return{
             listings: [],
-            rents: []
         }
     },
-    setup() {
-
-    },
+    
     methods: {
         ...mapActions(["loginUser", "logoutUser"]),
 
@@ -138,8 +166,13 @@ export default {
                 is_renter: !this.isRenter
             }).then((response) => {
                 this.$router.go()
-                this.$router.push({ name: "home_path" })
+                this.prompt = true
+                
+
             })
+        },
+        push() {
+            this.$router.push({name: "home_path"})
         }
 
     },

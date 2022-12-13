@@ -16,6 +16,7 @@ const routes = [
         path: "/host/listing",
         name: "listing_path",
         component: () => import("pages/host/listing.vue"),
+        props: {prompt_delete: false}
       },
       {
         path: "/host/listing/:id",

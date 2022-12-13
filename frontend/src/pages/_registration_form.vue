@@ -19,8 +19,6 @@
         <q-input filled type="password" v-model="password" label="Password" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter a Password']" />
     
-        <q-toggle v-model="accept" label="I accept the license and terms" />
-    
         <div>
                 <q-btn label="Submit" type="submit" color="primary"/>
             

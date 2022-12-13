@@ -8,8 +8,6 @@ class Api::V1::SpacesController < ApplicationController
   end
 
   def myspaces    
-    puts params
-    puts "test"
     @spaces = Space.where('user_id LIKE ?', params[:search_id])
     
     render json: @spaces
@@ -83,11 +81,6 @@ class Api::V1::SpacesController < ApplicationController
   # DELETE /spaces/1 or /spaces/1.json
   def destroy
     @space.destroy
-
-    respond_to do |format|
-      format.html { redirect_to spaces_url, notice: "Space was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
   private

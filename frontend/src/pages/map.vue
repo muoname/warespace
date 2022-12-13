@@ -1,5 +1,5 @@
 <template>
-    <q-page>
+    <q-page v-if="isLoggedIn">
         <GMapMap :center="center" :options="options" :zoom="13" style="width: 100vw; height: 900px">
             <GMapMarker v-bind:key="space.id" v-for="space in nearby"
                 :position="{ lat: space.latitude, lng: space.longitude }" @click="openMarker(space.id)">
@@ -31,12 +31,40 @@
             </GMapMarker>
         </GMapMap>
     </q-page>
+    <template v-else>
+        <q-card style="min-width: 350px">
+            <q-card-section>
+                <div class="text-h6" align="center">Status</div>
+            </q-card-section>
+            <div class="q-pa-lg">
+                <q-card class="bg-negative q-pa-lg" align="center">
+                    <p class="text-white" style="display:inline"> Please Login to Continue in this Page </p>
+                </q-card>
+            </div>
+            <q-card-actions align="center" class="text-primary">
+                <q-btn flat label="OK" @click="push" v-close-popup />
+            </q-card-actions>
+        </q-card>
+    </template>
 </template>
 <script>
 import "../store/index.js"
+import { mapActions, mapGetters } from "vuex";
 import { useStore } from "vuex"
 import axios from "axios"
 export default {
+    computed: {
+        ...mapGetters([
+            "getAuthToken",
+            "getUserEmail",
+            "getUserID",
+            "isLoggedIn",
+            "getUserFirstName",
+            "getUserLastName",
+            "isRenter",
+            "getUserPhoneNumber",
+        ]),
+    },
     created() {
         const store = useStore()
         const address = store.getters.getUserAddress
@@ -103,6 +131,9 @@ export default {
     methods: {
         openMarker(id) {
             this.openedMarkerID = id
+        },
+        push(){
+            this.$router.push({name:"home_path"})
         }
     }
 }
