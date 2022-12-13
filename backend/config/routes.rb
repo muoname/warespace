@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       get '/show_rents/:search_id', to: 'rents#show_rents'
       
       get '/search', to: 'spaces#search'
+
+      get 'recommendation', to: 'spaces#recommendation'
     end
   end
   patch 'users/switch/:id', to: 'users#switch'

@@ -4,7 +4,7 @@ class Api::V1::RentsController < ApplicationController
   def show_rents
     @rents = Rent.where('space_id LIKE ?', params[:search_id])
 
-    render json: @rents
+    render json: @rents.to_json(include: { user: { only: [:first_name, :last_name, :phone_number, :address] } })
   end
 
   # GET /rents

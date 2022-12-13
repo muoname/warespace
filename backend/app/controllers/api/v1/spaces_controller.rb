@@ -1,6 +1,12 @@
 class Api::V1::SpacesController < ApplicationController
   before_action :set_space, only: %i[ show edit update destroy ]
 
+  def recommendation
+    @spaces = Space.last(6)
+
+    render json: @spaces
+  end
+
   def search
     @spaces = Space.where(location: params[:search_string]).or(Space.where(title: params[:search_string]))
 
