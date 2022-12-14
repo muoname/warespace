@@ -65,9 +65,11 @@
                                     </div>
                                     <div class="col q-pr-sm lt-md" align="center">
                                         <q-btn flat dense round icon="event" />
-                                        <q-btn flat dense color="primary">
-                                            Reserve
-                                        </q-btn>
+                                        <router-link :to="{ name: 'host_show_path', params: { id: space.id } }">
+                                            <q-btn flat dense color="primary">
+                                                Reserve
+                                            </q-btn>
+                                        </router-link>
                                     </div>
                                 </div>
                             </q-card>

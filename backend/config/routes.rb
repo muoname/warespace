@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       post '/myrents', to: 'spaces#myrents'
       get '/show_rents/:search_id', to: 'rents#show_rents'
       
-      get '/search', to: 'spaces#search'
+      post '/search', to: 'spaces#search'
 
       get 'recommendation', to: 'spaces#recommendation'
       get 'recommendation2', to: 'spaces#recommendation2'

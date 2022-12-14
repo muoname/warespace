@@ -38,6 +38,11 @@ const routes = [
         name: "map_path",
         component: () => import("pages/map.vue"),
       },
+      {
+        path: "/search/:search_string",
+        name: "search_path",
+        component: () => import("pages/search.vue"),
+      },
     ],
   },
   {

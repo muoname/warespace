@@ -35,7 +35,7 @@
                 </q-form>
                 
             </div>
-            <div v-else>
+            <div>
                 <div class="q-pt-sm q-pb-sm">
                     <delete_fail v-model="delete_fail" />
                     <delete_success v-model="delete_success" />
@@ -65,7 +65,7 @@
 <script>
 import { ref } from "vue"
 import axios from 'axios'
-import "../../store";
+import "../../store/index.js";
 import { mapActions, mapGetters } from "vuex";
 import rent_success from "../shared/_rent_sucess.vue"
 import rent_fail from "../shared/_rent_fail.vue"

@@ -40,7 +40,7 @@
           >
             <template v-slot:append>
               <div class="justtify-right flex-center">
-                <q-icon name="search"> </q-icon>
+                  <q-btn flat @click="search"><q-icon name="search"> </q-icon></q-btn>
               </div>
             </template>
           </q-input>
@@ -173,10 +173,10 @@
       </div>
       <div class="row justify-between dheader-color">
         <div class="col-3 text-h6 q-pa-lg text-white">
-          <p class="text-h6" align="center">About Us</p>
+          <p class="text-h6" align="center">Our Goal</p>
         </div>
         <div class="col-3 text-h6 q-pa-lg text-white">
-          <p class="text-h6" align="center">Browse</p>
+          <p class="text-h6" align="center">Our Vision</p>
         </div>
         <div class="col-3 q-pa-lg text-white">
           <p class="text-h6" align="center">Our Mission</p>
@@ -219,7 +219,6 @@ export default {
     return {
       loginEmail: "",
       loginPassword: "",
-      search_string: ref(null),
       email_sub: ref(null)
     };
   },
@@ -252,6 +251,9 @@ export default {
         name: "listing_path"
       })
     },
+    search(){
+      this.$router.push({ name: 'search_path', params: { search_string: this.search_string } })
+    }
   },
 
   components: {
@@ -263,6 +265,7 @@ export default {
     
     const leftDrawerOpen = ref(false);
     const testingTrue = ref(false);
+    const search_string = ref(null)
 
     return {
       testingTrue,
@@ -272,6 +275,7 @@ export default {
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
+      search_string
     };
   },
 };
