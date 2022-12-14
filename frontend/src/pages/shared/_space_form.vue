@@ -3,7 +3,7 @@
     <listing_fail v-model="prompt_fail"></listing_fail>
     <q-card style="min-width: 350px">
       <q-card-section>
-        <div class="text-h6">Login</div>
+        <div class="text-h6">New Space</div>
       </q-card-section>
 
       <q-form @submit="onSubmit" class="q-gutter-md">

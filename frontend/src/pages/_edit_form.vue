@@ -19,8 +19,6 @@
         <q-input filled type="password" v-model="password" label="Password" lazy-rules
             :rules="[val => val && val.length > 0 || 'Enter a Password']" />
 
-        <q-toggle v-model="accept" label="I accept the license and terms" />
-
         <div>
             <q-btn label="Edit Account Details" type="submit" color="primary" />
 
@@ -61,7 +59,6 @@ export default {
         const city = ref(null)
         const zipcode = ref(null)
         const province = ref(null)
-        const accept = ref(false)
 
         return {
             first_name,
@@ -69,7 +66,6 @@ export default {
             phone_number,
             email,
             password,
-            accept,
             street,
             zipcode,
             city,
