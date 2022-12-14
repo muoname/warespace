@@ -14,7 +14,9 @@
                     
                         <q-card-section>
                             <div class="text-h6">{{ space.title }}</div>
-                            <div class="text-subtitle2">{{ space.user_id }}</div>
+                            <div class="text-subtitle2">{{ space.user.first_name }} {{ space.user.last_name }}</div>
+                            <div class="text-body">{{ space.street }} {{ space.city }} {{ space.province }} {{ space.zipcode }}</div>
+                            <div class="text-subtitle2"> Php: {{ space.weekly_rate }}</div>
                         </q-card-section>
                     
                         <div class="row flex-center">

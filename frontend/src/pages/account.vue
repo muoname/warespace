@@ -28,6 +28,7 @@
                     Name: {{ getUserFirstName }} {{ getUserLastName }} <br>
                     Email: {{ getUserEmail }} <br>
                     Phone Number: {{ getUserPhoneNumber }} <br>
+                    Address: {{ getUserAddress }} <br>
                     User Type: <template v-if="isRenter"> Renter </template> <template v-else> Host </template> <br>
                     <a href="/users/account/edit">Edit Account Details</a>
                 </p>
@@ -129,6 +130,7 @@ export default {
             "getUserLastName",
             "isRenter",
             "getUserPhoneNumber",
+            "getUserAddress"
         ]),
     },
     created() {
