@@ -14,15 +14,24 @@ Rails.application.routes.draw do
       resources :rents
       # get 'pages/home/:address', to: 'pages#index'
       get '/maps/nearby/:address', to: 'maps#index'
+
+      post '/myspaces', to: 'spaces#myspaces'
+      post '/myrents', to: 'spaces#myrents'
+      get '/show_rents/:search_id', to: 'rents#show_rents'
       
+      post '/search', to: 'spaces#search'
+
+      get 'recommendation', to: 'spaces#recommendation'
+      get 'recommendation2', to: 'spaces#recommendation2'
+
     end
   end
   patch 'users/switch/:id', to: 'users#switch'
   patch 'users/:id', to: 'users#update'
   get 'users/:id', to: 'users#show'
  
-  root 'application#index'
-  match "*path", to: "application#index", format: false, via: :get
+  # root 'application#index'
+  # match "*path", to: "application#index", format: false, via: :get
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

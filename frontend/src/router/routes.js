@@ -16,6 +16,7 @@ const routes = [
         path: "/host/listing",
         name: "listing_path",
         component: () => import("pages/host/listing.vue"),
+        props: {prompt_delete: false}
       },
       {
         path: "/host/listing/:id",
@@ -36,6 +37,11 @@ const routes = [
         path: "/map",
         name: "map_path",
         component: () => import("pages/map.vue"),
+      },
+      {
+        path: "/search/:search_string",
+        name: "search_path",
+        component: () => import("pages/search.vue"),
       },
     ],
   },

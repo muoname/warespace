@@ -1,5 +1,6 @@
 <template>
   <q-dialog>
+    <listing_fail v-model="prompt_fail"></listing_fail>
     <q-card style="min-width: 350px">
       <q-card-section>
         <div class="text-h6">Login</div>
@@ -24,14 +25,6 @@
             type="text"
             autofocus
             label="Title"
-          />
-          <p></p>
-          <q-input
-            outlined
-            v-model="location"
-            type="textarea"
-            autofocus
-            label="Address"
           />
           <p></p>
           <q-input
@@ -88,9 +81,15 @@
             type="text"
             label="Weekly Rate"
           />
+          <p></p>
+          <q-file v-model="image" label="Upload Image">
+            <template v-slot:prepend>
+              <q-icon name="attach_file" />
+            </template>
+          </q-file>
         </q-card-section>
         <q-card-actions align="right" class="text-primary">
-            <q-btn color="primary" type="submit" label="Post Listing" v-close-popup />
+            <q-btn color="primary" type="submit" label="Post Listing"/>
 
           <q-btn flat label="Cancel" v-close-popup />
           
@@ -106,8 +105,11 @@ import { ref } from "vue";
 import axios from "axios";
 import "../../store";
 import { mapActions, mapGetters } from "vuex";
-
+import listing_fail from "./_listing_fail.vue"
 export default {
+  components: {
+    listing_fail,
+  },
   computed: {
     ...mapGetters([
       "getUserID",,
@@ -121,7 +123,6 @@ export default {
       space_id: "",
       spacecategory_id: "",
       title: "",
-      location: "",
       description: "",
       space_size: "",
       weekly_rate: "",
@@ -129,6 +130,7 @@ export default {
       city: "",
       zipcode: "",
       province: "",
+      image: ref(null)
     };
   },
 
@@ -146,33 +148,45 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
+      const params = {
+        user_id: this.getUserID,
+        spacecategory_id: this.spacecategory_id,
+        title: this.title,
+        description: this.description,
+        space_size: this.space_size,
+        weekly_rate: this.weekly_rate,
+        street: this.street,
+        city: this.city,
+        zipcode: this.zipcode,
+        province: this.province,
+        image: this.image
+      }
+
+      let formData = new FormData()
+      Object.entries(params).forEach(
+        ([key, value]) => formData.append(key, value)
+      )
+
       new Promise((resolve, reject) => {
-        axios.post("http://localhost:3000/api/v1/spaces", {
-          user_id: this.getUserID,
-          spacecategory_id: this.spacecategory_id,
-          title: this.title,
-          location: this.location,
-          description: this.description,
-          space_size: this.space_size,
-          weekly_rate: this.weekly_rate,
-          street: this.street,
-          city: this.city,
-          zipcode: this.zipcode,
-          province: this.province,
-        })
+        axios.post("http://localhost:3000/api/v1/spaces", formData)
           .then((response) => {
-            resolve(response);
             console.log(response.data)
+            this.$router.push({ name: 'host_show_path', params: { id: response.data.id } })
+            resolve(response);
+            
           })
           .catch((error) => {
             reject(error);
+            this.prompt_fail = true
           });
       });
     },
   },
 
   setup() {
-    return {};
+    return {
+      prompt_fail: ref(false), 
+    };
   },
 };
 </script>

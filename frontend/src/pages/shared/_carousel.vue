@@ -35,6 +35,7 @@
                       rounded
                       label="Learn More"
                       color="primary"
+                      @click="toLists"
                     />
                   </div>
                 </q-card-section>
@@ -59,6 +60,11 @@ export default {
       autoplay: ref(true),
     };
   },
+  methods: {
+    toLists(){
+      this.$router.push({name: "listing_path"})
+    }
+  }
 };
 </script>
 
